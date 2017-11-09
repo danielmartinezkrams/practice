@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: #333333;
 }
 
 .App-logo {
@@ -16,6 +17,16 @@
 
 .App-title {
   font-size: 1.5em;
+  font-family: Roboto, sans-serif;
+  color: #ffffff;
+  font-weight: 900;
+  overflow: visible;
+  text-align: center;
+  width: 70%;
+  margin:  auto;
+  line-height: 80%;
+  padding-bottom: 8%;
+  padding-top: 2%;
 }
 
 .App-intro {
@@ -25,4 +36,48 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+#titleLogo{
+  padding-top:100px;
+}
+.confirm{
+  background-color: #ffffff;
+  width: 70%;
+  height: 30%;
+  margin: auto;
+}
+#verification{
+  background-color: #05bdd5;
+  color: #ffffff;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 125%;
+  text-align: center;
+  padding: 4%;
+}
+#confirmButton{
+  width: 86%;
+  margin-left: 7%;
+  margin-bottom: 4%;
+  padding: 3%;
+  background: none, #05bdd5;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 3%;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 100%;
+}
+#idCheck{
+  width: 86%;
+  margin-left: 7%;
+  padding: 3%;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  font-size: 14px;
+  background: transparent;
+  border-bottom: 1px solid #999999;
+  margin-bottom: 4%;
 }
