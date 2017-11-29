@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background: #333333;
+  height: 100%;
 }
 
 .App-logo {
@@ -62,7 +63,7 @@
   padding: 3%;
   background: none, #05bdd5;
   border: 0;
-  box-shadow: 0;
+  box-shadow: #FFFFFF;
   border-radius: 3%;
   color: white;
   font-family: Roboto, sans-serif;
@@ -80,4 +81,46 @@
   background: transparent;
   border-bottom: 1px solid #999999;
   margin-bottom: 4%;
+}
+#welcomeMessage{
+  color: white;
+}
+ul.footer li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.footer {
+    background-color: #111;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+ul.footer li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+.content {
+  background-color: #FFF;
+  padding: 20px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
+}
+.active {
+  background-color: #0099FF;
+}
+.hashRouter{
+  display: none;
+}
+.score{
+    padding: 5px;
 }
