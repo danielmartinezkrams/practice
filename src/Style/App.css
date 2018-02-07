@@ -124,3 +124,44 @@ ul.footer li a {
 .score{
     padding: 5px;
 }
+body {
+  background-color: #333333;
+}
+#title {
+  position: fixed;
+  margin-top: 2%;
+  display: inline-block;
+  color: white;
+  font-size: 200%;
+  font-family: Roboto, sans-serif;
+}
+#logo {
+  width: 12%;
+  height: auto;
+}
+.header{
+  margin: auto;
+  background: #1e90ff;
+}
+.list-group {
+  margin-top: 15%;
+  list-style-type: none;
+}
+.list-group-item {
+  background-color: #333333;
+  color: white;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+a {
+  color: white;
+}
+.badge {
+  background-color: #05bdd5;
+}
+#subject {
+  text-align: left;
+}
+.button{
+    color: black;
+}
