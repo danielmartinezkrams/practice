@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import Footer from "./Footer";
 
-class IdForm extends React.Component {
+class IdForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
