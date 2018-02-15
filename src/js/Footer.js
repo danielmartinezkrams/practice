@@ -1,30 +1,24 @@
 import React, {Component} from 'react';
-import {Route, NavLink, HashRouter} from "react-router-dom";
-import Teacher from "./Teacher";
-import Home from "./Home"
+import {Link } from 'react-router-dom'
 
 class Footer extends Component{
     constructor(props){
         super(props);
         this.state = {
-            isLoggedIn: null,
+            isLoggedIn: false,
         };
         console.log(this.state.isLoggedIn);
     }
     render() {
         return (
-            <HashRouter>
-                <div>
-                    <div className="content">
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/teacher" component={Teacher}/>
-                    </div>
+            <footer>
+                <nav>
                     <ul className="footer">
-                        <button className="button"><li><NavLink exact to="/">Home</NavLink></li></button>
-                        <button><li><NavLink to="/teacher">Teachers</NavLink></li></button>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/teacher">Teachers</Link></li>
                     </ul>
-                </div>
-            </HashRouter>
+                </nav>
+            </footer>
         )
     }
 }

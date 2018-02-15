@@ -1,33 +1,24 @@
 import React, {Component} from 'react';
-import axios from "axios";
-import TeacherPage from "./TeacherPage"
+import {Link } from 'react-router-dom'
 
 class ListItem extends Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.url = "https://roast-my-teacher-backend.herokuapp.com/api/teachers/";
+        this.url = "https://roast-my-teacher-backend.herokuapp.com/api/roasts/";
         this.state = {
             data: "",
             display: []
         };
     }
+
     render() {
         return (
-            <li onClick={this.handleClick}>{this.props.value + ", " + this.props.subject}</li>
+            <li>
+                <Link to={`/teacher/${this.props.id}`}>
+                    {this.props.value + ", " + this.props.subject}
+                </Link>
+            </li>
         )
-    }
-    handleClick(){
-        axios.get(this.url + this.props.id)
-            .then(res => {
-                console.log(res);
-                const page = (<TeacherPage key={res.data._id} value={res.data.name} id={res.data._id}/>);
-                console.log(page);
-                this.setState({display: page})
-            })
-            .catch(err => {
-                console.error(err);
-            });
     }
 }
 
