@@ -17,7 +17,7 @@ class TeacherPage extends Component{
             .then((response) => {
                 console.log(response);
                 for(let i = 0; i < response.data.length; i++){
-                    ave += parseInt(response.data[i].review)
+                    ave += parseInt(response.data[i].review, 10)
                 }
                 const items = (response.data.map((x) =>
                     <li key={x._id}>{x.toast}</li>
@@ -26,6 +26,22 @@ class TeacherPage extends Component{
             })
             .catch(function (error) {
                 console.log(error);
+            });
+    }
+    handleSubmit(x) {
+        axios.post(this.url, x)
+            .then(res => {
+                this.setState({ data: res });
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        axios.post('http://jsonplaceholder.typicode.com/todos', {userId: '1', title: todoTitle, completed: false})
+            .then(function (response) {
+                resultElement.innerHTML = generateSuccessHTMLOutput(response);
+            })
+            .catch(function (error) {
+                resultElement.innerHTML = generateErrorHTMLOutput(error);
             });
     }
     render() {

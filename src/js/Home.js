@@ -7,7 +7,6 @@ class Home extends Component {
         this.name = "";
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/teachers/";
         this.loadFromServer = this.loadFromServer.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     loadFromServer() {
         axios.get(this.url)
@@ -18,15 +17,6 @@ class Home extends Component {
             .catch(function (error) {
                 console.log(error);
             })
-    }
-    handleSubmit(x) {
-        axios.post(this.url, x)
-            .then(res => {
-                this.setState({ data: res });
-            })
-            .catch(err => {
-                console.error(err);
-            });
     }
     componentDidMount() {
         this.loadFromServer();
