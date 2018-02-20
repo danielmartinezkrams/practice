@@ -36,7 +36,7 @@ class TeacherPage extends Component{
             .catch(err => {
                 console.error(err);
             });
-        axios.post('http://jsonplaceholder.typicode.com/todos', {userId: '1', title: todoTitle, completed: false})
+        axios.post('https://roast-my-teacher-backend.herokuapp.com/api/roasts/', {userId: '1', title: todoTitle, completed: false})
             .then(function (response) {
                 resultElement.innerHTML = generateSuccessHTMLOutput(response);
             })
