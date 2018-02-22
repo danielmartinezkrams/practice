@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review";
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class TeacherPage extends Component{
     constructor(props) {
@@ -18,6 +19,13 @@ class TeacherPage extends Component{
         };
     }
     componentDidMount(){
+        axios.get("https://roast-my-teacher-backend.herokuapp.com/api/teachers/" + this.props.match.params.id)
+            .then((response) => {
+                this.setState({name: response.data.value})
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         this.getData();
     }
     getData(){
@@ -25,13 +33,16 @@ class TeacherPage extends Component{
         axios.get(this.url + this.props.match.params.id)
             .then((response) => {
                 for(let i = 0; i < response.data.length; i++){
-                    ave += parseInt(response.data[i].review, 10)
+                    const num = parseInt(response.data[i].review, 10);
+                    if(!isNaN(num)){
+                        ave += num;
+                    }
                 }
+                console.log(response);
                 const items = (response.data.map((x) =>
-                    <li key={x._id}>{x.toast}</li>
+                    <li key={x._id}><b>{x.review + " "}</b>{x.toast}</li>
                 ));
-                const rev = ave/response.data.length;
-                console.log(rev);
+                const rev = Math.round(ave/response.data.length);
                 if(isNaN(rev)){
                     this.setState({display: items, total: (<Review number={0}/>), refer: this.props.match.params.id})
                 }
@@ -53,35 +64,39 @@ class TeacherPage extends Component{
     }
     handleSubmit(e) {
         e.preventDefault();
-        axios.post('https://roast-my-teacher-backend.herokuapp.com/api/roasts/', {refer: this.state.refer, review: this.state.review, toast: this.state.roast})
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                this.getData();
-            })
-            .catch(err => {
-                console.error(err);
-            });
+            axios.post('https://roast-my-teacher-backend.herokuapp.com/api/roasts/', {refer: this.state.refer, review: this.state.review, toast: this.state.roast})
+                .then(res => {
+                    this.getData();
+                })
+                .catch(err => {
+                    console.error(err);
+                });
     }
     render() {
         return (
             <div>
+                <Link to='/teacher'>Back</Link>
                 {this.state.total}
-                <ul className="list-group" id="table">
-                    {this.state.display}
-                </ul>
+                {this.state.name}
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Review:
-                        <input type="number" name="review" onChange={this.handleChange}/>
+                        <input type="range" min={-5} max={5} name="review" defaultValue={0} onChange={this.handleChange} required/>
+                        {this.state.review}
                     </label>
+                    <br/>
                     <label>
                         Roast:
-                        <input type="text" name="roast" onChange={this.handleChange}/>
+                        <input type="text" name="roast" onChange={this.handleChange} required/>
                     </label>
+                    <br/>
                     <input type="submit" value="Submit" />
                 </form>
-                <Link to='/teacher'>Back</Link>
+                <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
+                    <ul className="list-group" id="table">
+                        {this.state.display}
+                    </ul>
+                </Scrollbars>
             </div>
         )
     }

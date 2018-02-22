@@ -21,7 +21,6 @@ class TeacherList extends Component {
                 const items = (response.data.map((x) =>
                     <ListItem key={x._id} value={x.name} id={x._id} subject={x.subject}/>
                 ));
-                console.log(items);
                 this.setState({display: items})
             })
             .catch(function (error) {
