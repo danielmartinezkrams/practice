@@ -5,7 +5,7 @@ class Review extends Component {
     render(){
         return(
             <div className="displayCircle">
-                {this.props.number}
+                <h1>{this.props.number}</h1>
             </div>
         )
     }
