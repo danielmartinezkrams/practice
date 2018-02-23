@@ -26,8 +26,6 @@
   width: 70%;
   margin:  auto;
   line-height: 80%;
-  padding-bottom: 8%;
-  padding-top: 2%;
 }
 
 .App-intro {
@@ -127,14 +125,7 @@ ul.footer li a {
 body {
   background-color: #333333;
 }
-#title {
-  position: fixed;
-  margin-top: 2%;
-  display: inline-block;
-  color: white;
-  font-size: 200%;
-  font-family: Roboto, sans-serif;
-}
+
 #logo {
   width: 12%;
   height: auto;

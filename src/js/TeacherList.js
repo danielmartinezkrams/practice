@@ -33,7 +33,7 @@ class TeacherList extends Component {
         return (
             <div className="teacher">
                 <div className="header">
-                    <h1 id="title">Teachers</h1>
+                    <h1 className="App-title">Teachers</h1>
                     <img id="logo" className="App-logo" alt="small blue logo" src={logo}/>
                 </div>
                 <div>
