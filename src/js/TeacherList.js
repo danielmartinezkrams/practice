@@ -19,7 +19,7 @@ class TeacherList extends Component {
         axios.get(this.url)
             .then((response) => {
                 const items = (response.data.map((x) =>
-                    <ListItem key={x._id} value={x.name} id={x._id} subject={x.subject}/>
+                    <ListItem key={x._id} firstName={x.first} lastName={x.last} value={x.first + x.last} id={x._id} subject={x.subject}/>
                 ));
                 this.setState({display: items})
             })

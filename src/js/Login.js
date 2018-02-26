@@ -1,55 +1,77 @@
 import React, {Component} from 'react';
 import logo from "../img/logo.png";
-import { userActions } from '../Login/actions';
+import {Route, Link, Redirect, withRouter} from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        // reset login status
-        //this.props.logout = (userActions.logout());
         this.state = {
-            username: '',
-            password: '',
-            submitted: false
+            id: '',
+            isHidden: true,
+            redirectToReferrer: false
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+    validateForm() {
+        return this.state.email.length > 0 && this.state.password.length > 0;
     }
-    handleSubmit(e) {
-        e.preventDefault();
-        this.setState({ submitted: true });
-        const { username } = this.state;
-        const { dispatch } = this.props;
-        if (username) {
-            dispatch(userActions.login(username));
-        }
-    }
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
+    handleSubmit = event => {
+        event.preventDefault();
+    };
     render() {
-        const { loggingIn } = this.props;
-        const { username, submitted } = this.state;
         return (
-                <div className="Login">
-                    <img src={logo}  alt="logo" id="titleLogo" />
-                    <h1 className="App-title">ROAST MY TEACHER</h1>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                            <label htmlFor="username">Student ID</label>
-                            <input type="text" className="form-control" name="username" value={username} onChange={this.handleChange} />
-                            {submitted && !username && <div className="help-block">Username is required</div>}
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary">Verify</button>
-                            {loggingIn}
-                        </div>
-                    </form>
-                </div>
-            );
+            <div className="Login">
+                <img src={logo}  alt="logo" id="titleLogo" />
+                <h1 className="App-title">ROAST MY TEACHER</h1>
+                <form className="confirm">
+                    <label id="verification">Student Verification </label>
+                    <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
+                    <button id="confirmButton" type="button"><Link to="/home">Submit</Link></button>
+                </form>
+            </div>
+        );
+
     }
 }
 
+const fakeAuth = {
+    isAuthenticated: false,
+    authenticate(cb) {
+        this.isAuthenticated = true;
+        setTimeout(cb, 100)
+    },
+    signOut(cb) {
+        this.isAuthenticated = false;
+        setTimeout(cb, 100)
+    }
+};
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        fakeAuth.isAuthenticated === true
+            ? <Component {...props} />
+            : <Redirect to={{
+                pathname: '/login',
+                state: { from: props.location }
+            }} />
+    )} />
+);
+
+const AuthButton = withRouter(({ history }) => (
+    fakeAuth.isAuthenticated ? (
+        <p>
+            Welcome! <button onClick={() => {
+            fakeAuth.signout(() => history.push('/'))
+        }}>Sign out</button>
+        </p>
+    ) : (
+        <p>You are not logged in.</p>
+    )
+))
 
 export default Login
