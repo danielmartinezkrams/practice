@@ -15,7 +15,7 @@ class ListItem extends Component {
         return (
             <li>
                 <Link to={`/teacher/${this.props.id}`}>
-                    {this.props.value + ", " + this.props.subject}
+                    {this.props.firstName + " " + this.props.lastName + ", " + this.props.subject}
                 </Link>
             </li>
         )

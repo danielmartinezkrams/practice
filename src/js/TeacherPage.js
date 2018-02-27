@@ -7,7 +7,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 class TeacherPage extends Component{
     constructor(props) {
         super(props);
-        this.url = "https://roast-my-teacher-backend.herokuapp.com/api/roasts/";
+        this.url = "https://roast-my-teacher-backend.herokuapp.com/api/";
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getData = this.getData.bind(this);
@@ -16,21 +16,12 @@ class TeacherPage extends Component{
             ave: 0,
             total: 0,
             roast: "",
+            name: ""
         };
-    }
-    componentDidMount(){
-        axios.get("https://roast-my-teacher-backend.herokuapp.com/api/teachers/" + this.props.match.params.id)
-            .then((response) => {
-                this.setState({name: response.data.value})
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        this.getData();
     }
     getData(){
         let ave = 0;
-        axios.get(this.url + this.props.match.params.id)
+        axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
                 for(let i = 0; i < response.data.length; i++){
                     const num = parseInt(response.data[i].review, 10);
@@ -64,7 +55,7 @@ class TeacherPage extends Component{
     }
     handleSubmit(e) {
         e.preventDefault();
-            axios.post('https://roast-my-teacher-backend.herokuapp.com/api/roasts/', {refer: this.state.refer, review: this.state.review, toast: this.state.roast})
+            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast})
                 .then(res => {
                     this.getData();
                 })
@@ -72,7 +63,24 @@ class TeacherPage extends Component{
                     console.error(err);
                 });
     }
+    componentDidMount(){
+        console.log(this.props.match.params.id);
+        axios.get(this.url + "teachers/")
+            .then((response) => {
+                console.log(response);
+                for(let i = 0; i < response.data.length; i++){
+                    if(this.props.match.params.id === response.data[i]._id){
+                        this.setState({name: response.data[i].first + " " + response.data[i].last})
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        this.getData();
+    }
     render() {
+        console.log(this.state.name);
         return (
             <div>
                 <Link to='/teacher'>Back</Link>

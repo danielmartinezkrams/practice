@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import logo from "../img/logo.png";
 import ListItem from "./ListItem";
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class TeacherList extends Component {
     constructor(props) {
@@ -37,9 +38,11 @@ class TeacherList extends Component {
                     <img id="logo" className="App-logo" alt="small blue logo" src={logo}/>
                 </div>
                 <div>
-                    <ul className="list-group" id="table">
-                        {this.state.display}
-                    </ul>
+                    <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
+                        <ul className="list-group" id="table">
+                            {this.state.display}
+                        </ul>
+                    </Scrollbars>
                 </div>
             </div>
         )

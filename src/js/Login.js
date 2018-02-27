@@ -1,28 +1,29 @@
 import React, {Component} from 'react';
 import logo from "../img/logo.png";
-import {Route, Link, Redirect, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.handleLoginClick = this.handleChange.bind(this);
+        this.handleLogoutClick = this.handleSubmit.bind(this);
         this.state = {
             id: '',
-            isHidden: true,
-            redirectToReferrer: false
+            isLoggedIn: false
         };
         this.handleChange = this.handleChange.bind(this);
     }
-    validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
-    }
-    handleChange = event => {
+    handleChange(e){
         this.setState({
-            [event.target.name]: event.target.value
+            [e.target.name]: e.target.value,
         });
-    };
-    handleSubmit = event => {
-        event.preventDefault();
-    };
+    }
+    handleSubmit(e){
+        this.setState({
+            isLoggedIn: true
+        });
+        e.preventDefault();
+    }
     render() {
         return (
             <div className="Login">
@@ -31,47 +32,30 @@ class Login extends Component {
                 <form className="confirm">
                     <label id="verification">Student Verification </label>
                     <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
-                    <button id="confirmButton" type="button"><Link to="/home">Submit</Link></button>
+                    <button id="confirmButton" type="button"><Link to="/">Submit</Link></button>
                 </form>
+                <Greeting isLoggedIn={this.state.isLoggedIn} />
             </div>
         );
 
     }
 }
 
-const fakeAuth = {
-    isAuthenticated: false,
-    authenticate(cb) {
-        this.isAuthenticated = true;
-        setTimeout(cb, 100)
-    },
-    signOut(cb) {
-        this.isAuthenticated = false;
-        setTimeout(cb, 100)
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn) {
+        return <UserGreeting />;
     }
-};
+    return <GuestGreeting />;
+}
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-        fakeAuth.isAuthenticated === true
-            ? <Component {...props} />
-            : <Redirect to={{
-                pathname: '/login',
-                state: { from: props.location }
-            }} />
-    )} />
-);
+function UserGreeting(props) {
+    return <h1>Welcome back!</h1>;
+}
 
-const AuthButton = withRouter(({ history }) => (
-    fakeAuth.isAuthenticated ? (
-        <p>
-            Welcome! <button onClick={() => {
-            fakeAuth.signout(() => history.push('/'))
-        }}>Sign out</button>
-        </p>
-    ) : (
-        <p>You are not logged in.</p>
-    )
-))
+function GuestGreeting(props) {
+    return <h1>Please sign up.</h1>;
+}
+
 
 export default Login
