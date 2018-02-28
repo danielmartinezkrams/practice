@@ -23,21 +23,20 @@ class TeacherPage extends Component{
         let ave = 0;
         axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
-                for(let i = 0; i < response.data.length; i++){
-                    const num = parseInt(response.data[i].review, 10);
-                    if(!isNaN(num)){
-                        ave += num;
-                    }
-                }
-                console.log(response);
-                const items = (response.data.map((x) =>
-                    <li key={x._id}><b>{x.review + " "}</b>{x.toast}</li>
-                ));
-                const rev = Math.round(ave/response.data.length);
-                if(isNaN(rev)){
-                    this.setState({display: items, total: (<Review number={0}/>), refer: this.props.match.params.id})
+                if(response.data.length < 1){
+                    this.setState({display: "No reviews yet", total: (<Review number={0}/>), refer: this.props.match.params.id})
                 }
                 else{
+                    for(let i = 0; i < response.data.length; i++){
+                        const num = parseInt(response.data[i].review, 10);
+                        if(!isNaN(num)){
+                            ave += num;
+                        }
+                    }
+                    const items = (response.data.map((x) =>
+                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}</li>
+                    ));
+                    const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
                 }
             })
@@ -64,10 +63,8 @@ class TeacherPage extends Component{
                 });
     }
     componentDidMount(){
-        console.log(this.props.match.params.id);
         axios.get(this.url + "teachers/")
             .then((response) => {
-                console.log(response);
                 for(let i = 0; i < response.data.length; i++){
                     if(this.props.match.params.id === response.data[i]._id){
                         this.setState({name: response.data[i].first + " " + response.data[i].last})
@@ -80,7 +77,6 @@ class TeacherPage extends Component{
         this.getData();
     }
     render() {
-        console.log(this.state.name);
         return (
             <div>
                 <Link to='/teacher'>Back</Link>

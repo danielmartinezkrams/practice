@@ -25,14 +25,23 @@ class Login extends Component {
         e.preventDefault();
     }
     render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button = null;
+        if (isLoggedIn) {
+            button = <Link to="/">Submit</Link>;
+        }
+        else {
+            button = <Link to="/login">Submit</Link>;
+        }
         return (
             <div className="Login">
                 <img src={logo}  alt="logo" id="titleLogo" />
                 <h1 className="App-title">ROAST MY TEACHER</h1>
-                <form className="confirm">
+                <form className="confirm" onSubmit={this.handleSubmit}>
                     <label id="verification">Student Verification </label>
                     <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
-                    <button id="confirmButton" type="button"><Link to="/">Submit</Link></button>
+                    <input type="submit" value="Submit" />
+                    {button}
                 </form>
                 <Greeting isLoggedIn={this.state.isLoggedIn} />
             </div>

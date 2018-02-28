@@ -9,25 +9,32 @@ class TeacherList extends Component {
         super(props);
         this.data = "";
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.filterList = this.filterList.bind(this);
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/teachers/";
         this.state = {
             data: "",
             display: []
         };
     }
-
     componentDidMount(){
         axios.get(this.url)
             .then((response) => {
                 const items = (response.data.map((x) =>
                     <ListItem key={x._id} firstName={x.first} lastName={x.last} value={x.first + x.last} id={x._id} subject={x.subject}/>
                 ));
-                this.setState({display: items})
+                this.setState({items: items, display: items})
             })
             .catch(function (error) {
                 console.log(error);
             });
+    }
 
+    filterList(event){
+        const permList = this.state.items;
+        let updatedList = permList.filter(function(item){
+            return (item.props.firstName.toLowerCase().search(event.target.value.toLowerCase()) !== -1 || item.props.lastName.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+        });
+        this.setState({display: updatedList});
     }
 
     render() {
@@ -39,9 +46,14 @@ class TeacherList extends Component {
                 </div>
                 <div>
                     <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
-                        <ul className="list-group" id="table">
+                        <div className="filter-list">
+                            <form>
+                                <fieldset className="form-group">
+                                    <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filterList}/>
+                                </fieldset>
+                            </form>
                             {this.state.display}
-                        </ul>
+                        </div>
                     </Scrollbars>
                 </div>
             </div>
