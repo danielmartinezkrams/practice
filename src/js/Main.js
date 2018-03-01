@@ -3,9 +3,12 @@ import { Switch, Route } from 'react-router-dom'
 import Teacher from "./Teacher";
 import Login from "./Login";
 import Home from "./Home"
-import PrivateRoute from "./PrivateRoute";
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {loggedIn: false}
+    }
     render(){
         return(
             <Switch>

@@ -77,11 +77,10 @@ class TeacherPage extends Component{
         this.getData();
     }
     render() {
-        return (
-            <div>
-                <Link to='/teacher'>Back</Link>
-                {this.state.total}
-                {this.state.name}
+        const isLoggedIn = this.state.isLoggedIn;
+        let form = null;
+        if (isLoggedIn) {
+            form = (
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Review:
@@ -96,6 +95,17 @@ class TeacherPage extends Component{
                     <br/>
                     <input type="submit" value="Submit" />
                 </form>
+            );
+        }
+        else {
+            form = <Link to="/login">Login to Post a Review</Link>;
+        }
+        return (
+            <div>
+                <Link to='/teacher'>Back</Link>
+                {this.state.total}
+                {this.state.name}
+                {form}
                 <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
                     <ul className="list-group" id="table">
                         {this.state.display}

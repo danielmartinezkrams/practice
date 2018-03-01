@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import logo from "../img/logo.png";
-import {Link} from 'react-router-dom'
+import axios from "axios";
+import { Route } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.handleLoginClick = this.handleChange.bind(this);
-        this.handleLogoutClick = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.url = "https://roast-my-teacher-backend.herokuapp.com/api/students/";
         this.state = {
-            id: '',
             isLoggedIn: false
         };
-        this.handleChange = this.handleChange.bind(this);
     }
     handleChange(e){
         this.setState({
@@ -19,52 +19,47 @@ class Login extends Component {
         });
     }
     handleSubmit(e){
-        this.setState({
-            isLoggedIn: true
-        });
         e.preventDefault();
+        axios.get(this.url + this.state.id)
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    isLoggedIn: true,
+                    class: response.data.class,
+                    first: response.data.first,
+                    last: response.data.last,
+                    studentID: response.data.studentID,
+                    _id: response.data._id
+                });
+                console.log(this.props.match.params);
+                this.props.router.push("/");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
-        let button = null;
-        if (isLoggedIn) {
-            button = <Link to="/">Submit</Link>;
-        }
-        else {
-            button = <Link to="/login">Submit</Link>;
-        }
         return (
             <div className="Login">
                 <img src={logo}  alt="logo" id="titleLogo" />
                 <h1 className="App-title">ROAST MY TEACHER</h1>
                 <form className="confirm" onSubmit={this.handleSubmit}>
                     <label id="verification">Student Verification </label>
-                    <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
+                    <input id="idCheck" name="id" type="text" default="009020" onChange={this.handleChange}/>
                     <input type="submit" value="Submit" />
-                    {button}
+                    <Route render={({history}) => (
+                        <button
+                            type='button'
+                            onClick={() => { history.push(this.props.match.params.id) }}
+                        >
+                            Click Me!
+                        </button>
+                    )} />
                 </form>
-                <Greeting isLoggedIn={this.state.isLoggedIn} />
             </div>
         );
 
     }
 }
-
-function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-        return <UserGreeting />;
-    }
-    return <GuestGreeting />;
-}
-
-function UserGreeting(props) {
-    return <h1>Welcome back!</h1>;
-}
-
-function GuestGreeting(props) {
-    return <h1>Please sign up.</h1>;
-}
-
 
 export default Login
