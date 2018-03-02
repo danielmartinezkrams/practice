@@ -30,7 +30,7 @@ class Login extends Component {
                     studentID: response.data.studentID,
                     _id: response.data._id
                 });
-                this.context.router.history.push('/');
+                this.props.function(true);
             })
             .catch(function (error) {
                 console.log(error);
@@ -48,9 +48,9 @@ class Login extends Component {
                 </form>
             </div>
         );
-
     }
 }
+
 
 /*
  if(this.props.match.params.refer.length > 1){

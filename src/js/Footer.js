@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
-import icon from "../img/icon-profile.png";
+import icon from "../img/icon-profile.png"
 
 class Footer extends Component{
     constructor(props){

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../Style/App.css';
+import '../style/App.css';
 import Main from "./Main";
 import Footer from "./Footer";
 
@@ -13,7 +13,5 @@ class App extends Component {
         )
     }
 }
-
-
 
 export default App;

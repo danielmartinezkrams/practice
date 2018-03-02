@@ -11,9 +11,9 @@ class Main extends Component {
         this.handler = this.handler.bind(this)
     }
 
-    handler(e) {
+    handler(x) {
         this.setState({
-            loggedIn: e
+            loggedIn: x
         })
     }
     render(){
