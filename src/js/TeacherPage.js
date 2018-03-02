@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import Review from "./Review";
+import Review from "./Review"
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class TeacherPage extends Component{
@@ -16,7 +16,8 @@ class TeacherPage extends Component{
             ave: 0,
             total: 0,
             roast: "",
-            name: ""
+            name: "",
+            isLoggedIn: true
         };
     }
     getData(){
@@ -97,14 +98,16 @@ class TeacherPage extends Component{
                 </form>
             );
         }
+
         else {
-            form = <Link to="/login">Login to Post a Review</Link>;
+            form = <Link to={`/login/${this.props.match.params.id}`}>Log in to Roast</Link>;
         }
         return (
             <div>
                 <Link to='/teacher'>Back</Link>
                 {this.state.total}
                 {this.state.name}
+                <br />
                 {form}
                 <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
                     <ul className="list-group" id="table">

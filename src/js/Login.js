@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import logo from "../img/logo.png";
 import axios from "axios";
-import { Route } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
@@ -31,8 +30,7 @@ class Login extends Component {
                     studentID: response.data.studentID,
                     _id: response.data._id
                 });
-                console.log(this.props.match.params);
-                this.props.router.push("/");
+                this.context.router.history.push('/');
             })
             .catch(function (error) {
                 console.log(error);
@@ -45,21 +43,23 @@ class Login extends Component {
                 <h1 className="App-title">ROAST MY TEACHER</h1>
                 <form className="confirm" onSubmit={this.handleSubmit}>
                     <label id="verification">Student Verification </label>
-                    <input id="idCheck" name="id" type="text" default="009020" onChange={this.handleChange}/>
-                    <input type="submit" value="Submit" />
-                    <Route render={({history}) => (
-                        <button
-                            type='button'
-                            onClick={() => { history.push(this.props.match.params.id) }}
-                        >
-                            Click Me!
-                        </button>
-                    )} />
+                    <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         );
 
     }
 }
+
+/*
+ if(this.props.match.params.refer.length > 1){
+ this.props.history.push('/teacher' + this.props.match.param.refer);
+ }
+ else{
+ console.log("hi");
+ this.props.history.push('/');
+ }
+ */
 
 export default Login

@@ -32,6 +32,10 @@
   line-height: 80%;
 }
 
+.list-group{
+  list-style: none;
+}
+
 .App-intro {
   font-size: large;
 }

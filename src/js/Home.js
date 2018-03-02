@@ -20,7 +20,7 @@ class Home extends Component {
             })
     }
     componentDidMount() {
-        this.loadFromServer();
+        //this.loadFromServer();
     }
     render() {
         return (
