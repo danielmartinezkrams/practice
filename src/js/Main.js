@@ -13,38 +13,26 @@ class Main extends Component {
 
     handler(x) {
         this.setState({
-            loggedIn: x
+            loggedIn: true,
+            info: x
         })
     }
     render(){
         const isLoggedIn = this.state.loggedIn;
-        console.log(isLoggedIn);
-        let routes = null;
-        if (isLoggedIn) {
-            routes = (
-                <div className="content">
-                    <Route path="/login" render={() => <Login function={this.handler} loggedIn={isLoggedIn}/>} />
-                    <Route exact path="/" render={() => <Home loggedIn={isLoggedIn}/>}/>
-                    <Route path="/teacher" render={() => <Teacher  loggedIn={isLoggedIn}/>}/>
-                </div>
-            );
-        }
-        else {
-            routes = (
-                <div className="content">
-                    <Route exact path="/login" render={() => <Login function={this.handler}/>} />
-                    <Route path='/login/:refer' render={() => <Login function={this.handler}/>}/>
-                    <Route exact path="/" component={Home}/>
-                    <Route path="/teacher" component={Teacher}/>
-                </div>
-            )
-        }
+        const info = this.state.info;
+        console.log(isLoggedIn + " " + info);
         return(
             <Switch>
-                {routes}
+                <div className="content">
+                    <Route path="/login" render={() => <Login function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
+                    <Route exact path="/" render={() => <Home loggedIn={isLoggedIn} info={info}/>}/>
+                    <Route path="/teacher" render={() => <Teacher  loggedIn={isLoggedIn} info={info}/>}/>
+                </div>
             </Switch>
         )
     }
 }
+
+//     <Route path='/login/:refer' render={() => <Login function={this.handler}/>}/>
 
 export default Main

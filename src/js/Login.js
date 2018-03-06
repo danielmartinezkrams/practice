@@ -22,15 +22,23 @@ class Login extends Component {
         axios.get(this.url + this.state.id)
             .then((response) => {
                 console.log(response);
-                this.setState({
-                    isLoggedIn: true,
-                    class: response.data.class,
-                    first: response.data.first,
-                    last: response.data.last,
-                    studentID: response.data.studentID,
-                    _id: response.data._id
-                });
-                this.props.function(true);
+                if(response.data === null){
+                    alert("Login unsuccessful")
+                }
+                else{
+                    const info = {
+                        class: response.data.class,
+                        first: response.data.first,
+                        last: response.data.last,
+                        studentID: response.data.studentID,
+                        _id: response.data._id
+                    };
+                    this.setState({
+                        isLoggedIn: true,
+                        info: info
+                    });
+                    this.props.function(info);
+                }
             })
             .catch(function (error) {
                 console.log(error);

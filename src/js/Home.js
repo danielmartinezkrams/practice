@@ -23,11 +23,16 @@ class Home extends Component {
         //this.loadFromServer();
     }
     render() {
+        const isLoggedIn = this.props.loggedIn;
+        let name = null;
+        if(isLoggedIn){
+            name = this.props.info.first
+        }
         return (
             <div>
                 <h1>Home</h1>
                 <p>
-                    Welcome {this.state.name}
+                    Welcome {name}
                 </p>
             </div>
         )

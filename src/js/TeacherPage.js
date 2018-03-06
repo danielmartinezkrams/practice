@@ -17,7 +17,7 @@ class TeacherPage extends Component{
             total: 0,
             roast: "",
             name: "",
-            isLoggedIn: true
+            review: 0
         };
     }
     getData(){
@@ -35,7 +35,7 @@ class TeacherPage extends Component{
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}</li>
+                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}<p>{x.from}</p></li>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -55,7 +55,7 @@ class TeacherPage extends Component{
     }
     handleSubmit(e) {
         e.preventDefault();
-            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast})
+            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info._id})
                 .then(res => {
                     this.getData();
                 })
@@ -78,7 +78,7 @@ class TeacherPage extends Component{
         this.getData();
     }
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
+        const isLoggedIn = this.props.isLoggedIn;
         let form = null;
         if (isLoggedIn) {
             form = (
@@ -100,7 +100,7 @@ class TeacherPage extends Component{
         }
 
         else {
-            form = <Link to={`/login/${this.props.match.params.id}`}>Log in to Roast</Link>;
+            form = <Link to={"/login"}>Log in to Roast</Link>;
         }
         return (
             <div>
