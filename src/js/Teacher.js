@@ -13,7 +13,7 @@ class Teacher extends Component {
          return (
             <Switch>
                 <Route exact path='/teacher' component={TeacherList}/>
-                <Route path='/teacher/:id'  render={() => <TeacherPage  loggedIn={isLoggedIn} info={info}/>} />} />
+                <Route path='/teacher/:id'  render={({ match }) => ( <TeacherPage  match={match} isLoggedIn={isLoggedIn} info={info}/> )} />}) />
             </Switch>
         )
     }

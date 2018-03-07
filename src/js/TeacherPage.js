@@ -22,6 +22,7 @@ class TeacherPage extends Component{
     }
     getData(){
         let ave = 0;
+        console.log(this.props.match.params.id);
         axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
                 if(response.data.length < 1){
@@ -29,13 +30,14 @@ class TeacherPage extends Component{
                 }
                 else{
                     for(let i = 0; i < response.data.length; i++){
+                        console.log(response.data[i].from);
                         const num = parseInt(response.data[i].review, 10);
                         if(!isNaN(num)){
                             ave += num;
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}<p>{x.from}</p></li>
+                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}<p>{this.getDataB(x.from)}</p></li>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -44,6 +46,12 @@ class TeacherPage extends Component{
             .catch(function (error) {
                 console.log(error);
             });
+    }
+    getDataB(x){
+        axios.get(this.url + "students/" + x)
+            .then((response) => {
+                return x.first
+            })
     }
     handleChange(e) {
         const target = e.target;
@@ -54,8 +62,11 @@ class TeacherPage extends Component{
         });
     }
     handleSubmit(e) {
+        //, from: this.props.info._id
+        //refer: this.state.refer, review: this.state.review, toast: this.state.roast
+        console.log(this.props.info);
         e.preventDefault();
-            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info._id})
+            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID})
                 .then(res => {
                     this.getData();
                 })
@@ -79,6 +90,7 @@ class TeacherPage extends Component{
     }
     render() {
         const isLoggedIn = this.props.isLoggedIn;
+        console.log(isLoggedIn);
         let form = null;
         if (isLoggedIn) {
             form = (
