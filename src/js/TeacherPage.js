@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review"
 import { Scrollbars } from 'react-custom-scrollbars';
+import Roasts from "./Roasts"
 
 class TeacherPage extends Component{
     constructor(props) {
@@ -22,7 +23,6 @@ class TeacherPage extends Component{
     }
     getData(){
         let ave = 0;
-        console.log(this.props.match.params.id);
         axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
                 if(response.data.length < 1){
@@ -37,7 +37,7 @@ class TeacherPage extends Component{
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <li key={x._id}><b>{x.review + " "}</b>{x.toast}<p>{this.getDataB(x.from)}</p></li>
+                        <Roasts key={x._id} review={x.review} toast={x.toast} from={x.from}/>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -46,12 +46,6 @@ class TeacherPage extends Component{
             .catch(function (error) {
                 console.log(error);
             });
-    }
-    getDataB(x){
-        axios.get(this.url + "students/" + x)
-            .then((response) => {
-                return x.first
-            })
     }
     handleChange(e) {
         const target = e.target;
@@ -62,9 +56,6 @@ class TeacherPage extends Component{
         });
     }
     handleSubmit(e) {
-        //, from: this.props.info._id
-        //refer: this.state.refer, review: this.state.review, toast: this.state.roast
-        console.log(this.props.info);
         e.preventDefault();
             axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID})
                 .then(res => {
@@ -90,7 +81,6 @@ class TeacherPage extends Component{
     }
     render() {
         const isLoggedIn = this.props.isLoggedIn;
-        console.log(isLoggedIn);
         let form = null;
         if (isLoggedIn) {
             form = (
@@ -110,7 +100,6 @@ class TeacherPage extends Component{
                 </form>
             );
         }
-
         else {
             form = <Link to={"/login"}>Log in to Roast</Link>;
         }

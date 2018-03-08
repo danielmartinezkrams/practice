@@ -3,13 +3,6 @@ import {Link } from 'react-router-dom';
 import icon from "../img/icon-profile.png"
 
 class Footer extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            isLoggedIn: false,
-        };
-        console.log(this.state.isLoggedIn);
-    }
     render() {
         return (
             <footer>

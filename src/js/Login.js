@@ -21,7 +21,6 @@ class Login extends Component {
         e.preventDefault();
         axios.get(this.url + this.state.id)
             .then((response) => {
-                console.log(response);
                 if(response.data === null){
                     alert("Login unsuccessful")
                 }
