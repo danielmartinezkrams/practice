@@ -21,7 +21,7 @@ class Roasts extends Component{
     render(){
         return(
             <li>
-                <b>{this.props.review}</b><p>{this.props.toast}</p><b>{this.state.from}</b>
+                <b>{this.props.review}</b> {this.props.toast} <b>{this.state.from}</b>
             </li>
         )
     }

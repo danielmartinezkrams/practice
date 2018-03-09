@@ -26,7 +26,7 @@ class Home extends Component {
         const isLoggedIn = this.props.loggedIn;
         let name = null;
         if(isLoggedIn){
-            name = this.props.info.first
+            name = this.props.info.first + " " + this.props.info.last;
         }
         return (
             <div>

@@ -56,6 +56,7 @@ class TeacherPage extends Component{
         });
     }
     handleSubmit(e) {
+        console.log(this.state.refer + " " + this.state.review + " " + this.state.roast + " " + this.props.info.studentID);
         e.preventDefault();
             axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID})
                 .then(res => {

@@ -46,12 +46,12 @@ class Login extends Component {
     render() {
         return (
             <div className="Login">
-                <img src={logo}  alt="logo" id="titleLogo" />
+                <img src={logo}  alt="logo" className="titleLogo" />
                 <h1 className="App-title">ROAST MY TEACHER</h1>
                 <form className="confirm" onSubmit={this.handleSubmit}>
-                    <label id="verification">Student Verification </label>
-                    <input id="idCheck" name="id" type="text" onChange={this.handleChange}/>
-                    <input type="submit" value="Submit"/>
+                    <label className="verification">Student Verification </label>
+                    <input className="idCheck" name="id" type="text" onChange={this.handleChange}/>
+                    <input className="confirmButton" type="submit" value="Submit"/>
                 </form>
             </div>
         );
