@@ -56,10 +56,10 @@ class Login extends Component {
             } else {
                 let to = "/";
                 const array = this.props.match.params;
-                if(array.length !== 0){
+                console.log(array);
+                if(!isEmpty(array)){
                     to = "/teacher/" + array.refer
                 }
-                console.log(to);
                 alert = <Success first={this.state.info.first} last={this.state.info.last} to={to}/>;
             }
         }
@@ -67,6 +67,7 @@ class Login extends Component {
             <div className="Login">
                 <img src={logo}  alt="logo" className="titleLogo" />
                 <h1 className="App-title">ROAST MY TEACHER</h1>
+                <br/>
                 {alert}
                 <form className="confirm" onSubmit={this.handleSubmit}>
                     <label className="verification">Student Verification</label>
@@ -85,6 +86,17 @@ function Fail(props) {
 
 function Success(props) {
     return <div className="alert">{props.first} {props.last} Login Successful <Link to={props.to}>Continue</Link></div>;
+}
+
+function isEmpty(obj) {
+    if (obj == null) return true;
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+    if (typeof obj !== "object") return true;
+    for (const key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+    return true;
 }
 
 
