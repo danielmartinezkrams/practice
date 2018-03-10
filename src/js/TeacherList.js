@@ -52,7 +52,7 @@ class TeacherList extends Component {
                                     <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filterList}/>
                                 </fieldset>
                             </form>
-                            <ul className="list-group" id="table">
+                            <ul className="list-group">
                                 {this.state.display}
                             </ul>
                         </div>

@@ -32,11 +32,6 @@
   line-height: 80%;
 }
 
-
-.list-group{
-  list-style: none;
-}
-
 .App-intro {
   font-size: large;
 }
@@ -143,9 +138,14 @@ body {
   margin: auto;
   background: dodgerblue;
 }
-.list-group {
-  list-style-type: none;
-  border: 1px solid black
+.table {
+  border: 1px solid black;
+  width: 100%
+}
+.list-group{
+  list-style: none;
+  border: 1px black;
+  padding: 20px;
 }
 .list-group-item {
   background-color: #333333;

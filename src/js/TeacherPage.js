@@ -26,7 +26,7 @@ class TeacherPage extends Component{
         axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
                 if(response.data.length < 1){
-                    this.setState({display: "No reviews yet", total: (<Review number={0}/>), refer: this.props.match.params.id})
+                    this.setState({display: <tr><td>No reviews yet</td></tr>, total: (<Review number={0}/>), refer: this.props.match.params.id})
                 }
                 else{
                     for(let i = 0; i < response.data.length; i++){
@@ -111,9 +111,16 @@ class TeacherPage extends Component{
                 <br />
                 {form}
                 <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
-                    <ul className="list-group" id="table">
-                        {this.state.display}
-                    </ul>
+                    <table className="table">
+                        <tbody>
+                        <tr>
+                            <th>Review</th>
+                            <th>Roast</th>
+                            <th>Chef</th>
+                        </tr>
+                            {this.state.display}
+                        </tbody>
+                    </table>
                 </Scrollbars>
             </div>
         )

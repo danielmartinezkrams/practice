@@ -20,9 +20,11 @@ class Roasts extends Component{
     }
     render(){
         return(
-            <li>
-                <b>{this.props.review}</b> {this.props.toast} <b>{this.state.from}</b>
-            </li>
+            <tr>
+                <td><b>{this.props.review}</b></td>
+                <td>{this.props.toast}</td>
+                <td>{this.state.from}</td>
+            </tr>
         )
     }
 }
