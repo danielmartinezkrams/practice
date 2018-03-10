@@ -48,19 +48,21 @@ class Login extends Component {
                 console.log(error);
             });
     }
+    closeAlert() {
+        this.setState({ alert: false })
+    }
     render() {
         let alert = null;
         if(this.state.alert){
             if (!this.state.isLoggedIn) {
-                alert = <Fail/>;
+                alert = <div className="alert">Login Unsuccessful<button onClick={() => this.closeAlert()}>Try Again</button></div>;
             } else {
                 let to = "/";
                 const array = this.props.match.params;
-                console.log(array);
                 if(!isEmpty(array)){
                     to = "/teacher/" + array.refer
                 }
-                alert = <Success first={this.state.info.first} last={this.state.info.last} to={to}/>;
+                alert = <div className="alert">{this.state.info.first} {this.state.info.last} Login Successful <Link to={to}>Continue</Link></div>
             }
         }
         return (
@@ -78,14 +80,6 @@ class Login extends Component {
             </div>
         );
     }
-}
-
-function Fail(props) {
-    return <div className="alert">Login Unsuccessful</div>;
-}
-
-function Success(props) {
-    return <div className="alert">{props.first} {props.last} Login Successful <Link to={props.to}>Continue</Link></div>;
 }
 
 function isEmpty(obj) {

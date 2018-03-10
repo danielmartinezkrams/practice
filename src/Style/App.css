@@ -23,7 +23,7 @@
 .App-title {
   font-size: 1.5em;
   font-family: Roboto, sans-serif;
-  color: dodgerblue;
+  color: black;
   font-weight: 900;
   overflow: visible;
   text-align: center;
@@ -31,6 +31,7 @@
   margin:  auto;
   line-height: 80%;
 }
+
 
 .list-group{
   list-style: none;
@@ -140,7 +141,7 @@ body {
 }
 .header{
   margin: auto;
-  background: #1e90ff;
+  background: dodgerblue;
 }
 .list-group {
   list-style-type: none;
