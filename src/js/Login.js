@@ -83,7 +83,7 @@ function Fail(props) {
 }
 
 function Success(props) {
-    return <div className="alert">{props.first} {props.last} Login Successful <Link to={props.to} replace>Continue</Link></div>;
+    return <div className="alert">{props.first} {props.last} Login Successful <Link to={props.to}>Continue</Link></div>;
 }
 
 
