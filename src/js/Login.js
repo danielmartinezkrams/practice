@@ -54,10 +54,12 @@ class Login extends Component {
             if (!this.state.isLoggedIn) {
                 alert = <Fail/>;
             } else {
+                console.log(this.props.match.params.refer);
                 let to = "/";
-                if(this.props.match.params.refer > 1) {
-                    to = "teachers/" + this.props.match.params.refer
+                if(this.props.match.params.refer.length > 1) {
+                    to = "/teacher/" + this.props.match.params.refer
                 }
+                console.log(to);
                 alert = <Success first={this.state.info.first} last={this.state.info.last} to={to}/>;
             }
         }
