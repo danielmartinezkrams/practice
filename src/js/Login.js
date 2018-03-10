@@ -54,10 +54,10 @@ class Login extends Component {
             if (!this.state.isLoggedIn) {
                 alert = <Fail/>;
             } else {
-                console.log(this.props.match.params);
                 let to = "/";
-                if(this.props.match.params.length > 1) {
-                    to = "/teacher/" + this.props.match.params.refer
+                const array = this.props.match.params;
+                if(array.length !== 0){
+                    to = "/teacher/" + array.refer
                 }
                 console.log(to);
                 alert = <Success first={this.state.info.first} last={this.state.info.last} to={to}/>;
@@ -69,7 +69,8 @@ class Login extends Component {
                 <h1 className="App-title">ROAST MY TEACHER</h1>
                 {alert}
                 <form className="confirm" onSubmit={this.handleSubmit}>
-                    <label className="verification">Student Verification </label>
+                    <label className="verification">Student Verification</label>
+                    <p>Enter last 4 digits of student ID and day of birth (ex: 012301)</p>
                     <input className="idCheck" name="id" type="text" onChange={this.handleChange}/>
                     <input className="confirmButton" type="submit" value="Submit"/>
                 </form>

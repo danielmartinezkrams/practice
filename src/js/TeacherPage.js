@@ -30,7 +30,6 @@ class TeacherPage extends Component{
                 }
                 else{
                     for(let i = 0; i < response.data.length; i++){
-                        console.log(response.data[i].from);
                         const num = parseInt(response.data[i].review, 10);
                         if(!isNaN(num)){
                             ave += num;
