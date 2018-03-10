@@ -24,7 +24,8 @@ class Main extends Component {
         return(
             <Switch>
                 <div className="content">
-                    <Route path="/login" render={() => <Login function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
+                    <Route exact path="/login" render={({match}) => <Login match={match} function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
+                    <Route path="/login/:refer" render={({match}) => <Login match={match} function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
                     <Route exact path="/" render={() => <Home loggedIn={isLoggedIn} info={info}/>}/>
                     <Route path="/teacher" render={() => <Teacher  loggedIn={isLoggedIn} info={info}/>}/>
                 </div>

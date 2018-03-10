@@ -10,7 +10,7 @@
 }
 
 .profile{
-  height: 15px;
+  height: 20px;
 }
 
 .App-header {
@@ -53,7 +53,7 @@
   height: 30%;
   margin: auto;
 }
-#verification{
+.verification{
   background-color: #05bdd5;
   color: #ffffff;
   font-family: Roboto, sans-serif;
@@ -62,7 +62,7 @@
   text-align: center;
   padding: 4%;
 }
-#confirmButton{
+.confirmButton{
   width: 86%;
   margin-left: 7%;
   margin-bottom: 4%;
@@ -76,7 +76,7 @@
   font-weight: 700;
   font-size: 100%;
 }
-#idCheck{
+.idCheck{
   width: 86%;
   margin-left: 7%;
   padding: 3%;
@@ -143,7 +143,6 @@ body {
   background: #1e90ff;
 }
 .list-group {
-  margin-top: 15%;
   list-style-type: none;
   border: 1px solid black
 }
@@ -174,5 +173,19 @@ a{
   height: 50px;
   background: #1e90ff;
   border: 5px solid #999999;
-  text-align: center;
+  font-size: 50px;
+  margin: auto;
+  padding: 10px;
+}
+.alert{
+  position: absolute;
+  z-index: 1;
+  background: white;
+  border-style: solid;
+  border-width: 5px;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
 }

@@ -102,7 +102,7 @@ class TeacherPage extends Component{
             );
         }
         else {
-            form = <Link to={"/login"}>Log in to Roast</Link>;
+            form = <Link to={`/login/${this.state.refer}`}>Log in to Roast</Link>;
         }
         return (
             <div>

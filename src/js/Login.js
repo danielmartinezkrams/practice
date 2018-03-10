@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from "../img/logo.png";
 import axios from "axios";
+import {Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -9,8 +10,9 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/students/";
         this.state = {
-            isLoggedIn: false
-        };
+            isLoggedIn: false,
+            alert: false
+        }
     }
     handleChange(e){
         this.setState({
@@ -22,7 +24,9 @@ class Login extends Component {
         axios.get(this.url + this.state.id)
             .then((response) => {
                 if(response.data === null){
-                    alert("Login unsuccessful")
+                    this.setState({
+                        alert: true
+                    });
                 }
                 else{
                     const info = {
@@ -34,6 +38,7 @@ class Login extends Component {
                     };
                     this.setState({
                         isLoggedIn: true,
+                        alert: true,
                         info: info
                     });
                     this.props.function(info);
@@ -44,10 +49,23 @@ class Login extends Component {
             });
     }
     render() {
+        let alert = null;
+        if(this.state.alert){
+            if (!this.state.isLoggedIn) {
+                alert = <Fail/>;
+            } else {
+                let to = "/";
+                if(this.props.match.params.refer > 1) {
+                    to = "teachers/" + this.props.match.params.refer
+                }
+                alert = <Success first={this.state.info.first} last={this.state.info.last} to={to}/>;
+            }
+        }
         return (
             <div className="Login">
                 <img src={logo}  alt="logo" className="titleLogo" />
                 <h1 className="App-title">ROAST MY TEACHER</h1>
+                {alert}
                 <form className="confirm" onSubmit={this.handleSubmit}>
                     <label className="verification">Student Verification </label>
                     <input className="idCheck" name="id" type="text" onChange={this.handleChange}/>
@@ -56,6 +74,14 @@ class Login extends Component {
             </div>
         );
     }
+}
+
+function Fail(props) {
+    return <div className="alert">Login Unsuccessful</div>;
+}
+
+function Success(props) {
+    return <div className="alert">{props.first} {props.last} Login Successful <Link to={props.to} replace>Continue</Link></div>;
 }
 
 
