@@ -7,32 +7,31 @@ import Home from "./Home"
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {loggedIn: false};
+        this.state = {isLoggedIn: false};
         this.handler = this.handler.bind(this)
     }
 
-    handler(x) {
+    handler(x, y) {
         this.setState({
-            loggedIn: true,
-            info: x
+            isLoggedIn: x,
+            info: y
         })
     }
+
     render(){
-        const isLoggedIn = this.state.loggedIn;
+        const isLoggedIn = this.state.isLoggedIn;
         const info = this.state.info;
         return(
             <Switch>
                 <div className="content">
-                    <Route exact path="/login" render={({match}) => <Login match={match} function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
-                    <Route path="/login/:refer" render={({match}) => <Login match={match} function={this.handler} info={info} loggedIn={isLoggedIn}/>} />
-                    <Route exact path="/" render={() => <Home loggedIn={isLoggedIn} info={info}/>}/>
-                    <Route path="/teacher" render={() => <Teacher  loggedIn={isLoggedIn} info={info}/>}/>
+                    <Route exact path="/login" render={({match}) => <Login match={match} function={this.handler} info={info} isLoggedIn={isLoggedIn}/>} />
+                    <Route path="/login/:refer" render={({match}) => <Login match={match} function={this.handler} info={info} isLoggedIn={isLoggedIn}/>} />
+                    <Route exact path="/" render={() => <Home isLoggedIn={isLoggedIn} info={info}/>}/>
+                    <Route path="/teacher" render={() => <Teacher  isLoggedIn={isLoggedIn} info={info}/>}/>
                 </div>
             </Switch>
         )
     }
 }
-
-//     <Route path='/login/:refer' render={() => <Login function={this.handler}/>}/>
 
 export default Main
