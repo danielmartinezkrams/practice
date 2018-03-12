@@ -21,6 +21,7 @@ class Main extends Component {
     render(){
         const isLoggedIn = this.state.isLoggedIn;
         const info = this.state.info;
+        console.log(isLoggedIn);
         return(
             <Switch>
                 <div className="content">

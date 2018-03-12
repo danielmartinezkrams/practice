@@ -81,6 +81,7 @@ class TeacherPage extends Component{
     }
     render() {
         const isLoggedIn = this.props.isLoggedIn;
+        console.log(isLoggedIn);
         let form = null;
         if (isLoggedIn) {
             form = (

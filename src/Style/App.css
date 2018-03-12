@@ -40,7 +40,7 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-#titleLogo{
+.titleLogo{
   padding-top:100px;
 }
 .confirm{
@@ -83,9 +83,6 @@
   background: transparent;
   border-bottom: 1px solid #999999;
   margin-bottom: 4%;
-}
-#welcomeMessage{
-  color: white;
 }
 ul.footer li {
   display: inline;
@@ -142,10 +139,15 @@ body {
   border: 1px solid black;
   width: 100%
 }
-.list-group{
+.list-group {
   list-style: none;
   border: 1px black;
   padding: 20px;
+}
+
+.list-group {
+  list-style-type: none;
+  border: 1px solid black
 }
 .list-group-item {
   background-color: #333333;

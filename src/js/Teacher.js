@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 
 class Teacher extends Component {
      render() {
-         const isLoggedIn = this.props.loggedIn;
+         const isLoggedIn = this.props.isLoggedIn;
          let info = null;
          if(isLoggedIn){
              info = this.props.info;

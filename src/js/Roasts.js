@@ -28,7 +28,8 @@ class Roasts extends Component{
     }
     render(){
         let teacher = null;
-        if(this.props.teacher.length > 0){
+        console.log(this.props.teacher);
+        if(this.props.teacher !== undefined){
             teacher = <td>{this.state.teacher}</td>;
         }
         let d = new Date(this.props.date);
