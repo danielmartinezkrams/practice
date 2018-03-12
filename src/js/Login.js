@@ -79,6 +79,7 @@ class Login extends Component {
             isLoggedIn: false,
             info: ""
         });
+        this.props.function(false, "");
     }
     render() {
         let alert = null;

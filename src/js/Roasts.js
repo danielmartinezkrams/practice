@@ -28,18 +28,14 @@ class Roasts extends Component{
     }
     render(){
         let teacher = null;
-        let date = null;
         if(this.props.teacher.length > 0){
             teacher = <td>{this.state.teacher}</td>;
         }
-        if(this.props.date.length > 0){
-            let d = new Date(this.props.date);
-            date = <td>{d.toDateString()}</td>;
-        }
+        let d = new Date(this.props.date);
         return(
             <tr>
                 {teacher}
-                {date}
+                <td>{d.toDateString()}</td>
                 <td><b>{this.props.review}</b></td>
                 <td>{this.props.toast}</td>
                 <td>{this.state.from}</td>

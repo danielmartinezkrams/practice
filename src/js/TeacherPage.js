@@ -36,7 +36,7 @@ class TeacherPage extends Component{
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <Roasts key={x._id} review={x.review} toast={x.toast} from={x.from}/>
+                        <Roasts key={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from}/>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -114,6 +114,7 @@ class TeacherPage extends Component{
                     <table className="table">
                         <tbody>
                         <tr>
+                            <th>Date</th>
                             <th>Review</th>
                             <th>Roast</th>
                             <th>Chef</th>
