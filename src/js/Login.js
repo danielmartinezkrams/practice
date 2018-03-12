@@ -51,6 +51,7 @@ class Login extends Component {
                 console.log(error);
             });
     }
+
     componentDidMount(){
         if(this.state.isLoggedIn) {
             axios.get(this.url + "roasts/")
@@ -62,7 +63,7 @@ class Login extends Component {
                         }
                     }
                     const display = (items.map((x) =>
-                        <Roasts key={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from}/>
+                        <Roasts key={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} delete={true}/>
                     ));
                     this.setState({display: display});
                 })

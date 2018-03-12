@@ -32,6 +32,11 @@ class Roasts extends Component{
             teacher = <td>{this.state.teacher}</td>;
         }
         let d = new Date(this.props.date);
+        let del = null;
+        if(this.props.delete){
+            console.log(this.props.refer);
+            del = <td><button onClick={() => axios.delete(this.url + "roasts/" + this.props.refer)}>X</button></td>
+        }
         return(
             <tr>
                 {teacher}
@@ -39,6 +44,7 @@ class Roasts extends Component{
                 <td><b>{this.props.review}</b></td>
                 <td>{this.props.toast}</td>
                 <td>{this.state.from}</td>
+                {del}
             </tr>
         )
     }
