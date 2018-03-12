@@ -139,11 +139,6 @@ body {
   border: 1px solid black;
   width: 100%
 }
-.list-group {
-  list-style: none;
-  border: 1px black;
-  padding: 20px;
-}
 
 .list-group {
   list-style-type: none;
@@ -191,4 +186,8 @@ a{
   right: 0;
   margin: auto;
   padding: 10px;
+}
+
+body{
+  margin-bottom: 15px;
 }

@@ -73,15 +73,15 @@ class TeacherPage extends Component{
                         this.setState({name: response.data[i].first + " " + response.data[i].last})
                     }
                 }
+                this.getData();
             })
             .catch(function (error) {
                 console.log(error);
             });
-        this.getData();
+
     }
     render() {
         const isLoggedIn = this.props.isLoggedIn;
-        console.log(isLoggedIn);
         let form = null;
         if (isLoggedIn) {
             form = (
