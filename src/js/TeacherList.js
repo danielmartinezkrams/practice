@@ -19,10 +19,19 @@ class TeacherList extends Component {
     componentDidMount(){
         axios.get(this.url)
             .then((response) => {
-                const items = (response.data.map((x) =>
+                let items = [];
+                for(let i = 0; i < response.data.length; i++){
+                    items.push(response.data[i])
+                }
+                items.sort(function(a, b){
+                    if(a.last < b.last) return -1;
+                    if(a.last > b.last) return 1;
+                    return 0;
+                });
+                const display = (items.map((x) =>
                     <ListItem key={x._id} firstName={x.first} lastName={x.last} value={x.first + x.last} id={x._id} subject={x.subject}/>
                 ));
-                this.setState({items: items, display: items})
+                this.setState({items: display, display: display})
             })
             .catch(function (error) {
                 console.log(error);
