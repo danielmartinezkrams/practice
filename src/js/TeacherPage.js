@@ -30,14 +30,13 @@ class TeacherPage extends Component{
                 }
                 else{
                     for(let i = 0; i < response.data.length; i++){
-                        console.log(response.data[i]);
                         const num = parseInt(response.data[i].review, 10);
                         if(!isNaN(num)){
                             ave += num;
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <Roasts key={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from}/>
+                        <Roasts key={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from} name={x.name}/>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -56,9 +55,8 @@ class TeacherPage extends Component{
         });
     }
     handleSubmit(e) {
-        console.log(this.state.refer + " " + this.state.review + " " + this.state.roast + " " + this.props.info.studentID);
         e.preventDefault();
-            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID})
+            axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID, name: this.props.info.from})
                 .then(res => {
                     this.getData();
                 })

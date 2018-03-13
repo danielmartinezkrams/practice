@@ -22,11 +22,11 @@ class Home extends Component {
                     return a>b ? -1 : a<b ? 1 : 0;
                 });
                 let data = [];
-                for(let i = 0; i < 10; i++){
+                for(let i = 0; i < response.data.length; i++){
                     data[i] = response.data[i]
                 }
                 const items = (data.map((x) =>
-                    <Roasts key={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from}/>
+                    <Roasts key={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} name={x.name}/>
                 ));
                 this.setState({display: items});
             })

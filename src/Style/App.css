@@ -123,9 +123,6 @@ ul.footer li a {
 .score{
     padding: 5px;
 }
-body {
-  background-color: #333333;
-}
 
 #logo {
   width: 12%;
@@ -188,6 +185,23 @@ a{
   padding: 10px;
 }
 
-body{
+.Main{
   margin-bottom: 15px;
+  background-color: #333333;
+  display: block;
+  height: 85%;
+  width: 100%;
+}
+
+.footer{
+  background-color: purple;
+  font-size: 20px;
+  color: white;
+  border-top: 1px solid #E7E7E7;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 15%;
+  width: 100%;
 }

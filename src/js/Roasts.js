@@ -11,13 +11,6 @@ class Roasts extends Component{
         }
     }
     componentDidMount() {
-        axios.get(this.url + "students/" + this.props.from)
-            .then((res) => {
-                this.setState({from: res.data.first + " " + res.data.last + " " + res.data.class});
-            })
-            .catch(err => {
-                console.error(err);
-            });
         axios.get(this.url + "teachers/" + this.props.teacher)
             .then((res) => {
                 this.setState({teacher: res.data.first + " " + res.data.last});
@@ -26,6 +19,9 @@ class Roasts extends Component{
                 console.error(err);
             });
     }
+    closeAlert(){
+        this.setState({ hidden: "hidden" });
+    }
     render(){
         let teacher = null;
         if(this.props.teacher !== undefined){
@@ -33,9 +29,14 @@ class Roasts extends Component{
         }
         let d = new Date(this.props.date);
         let del = null;
-        if(this.props.delete){
-            console.log(this.props.refer);
-            del = <td><button onClick={() => axios.delete(this.url + "roasts/" + this.props.refer)}>X</button></td>
+        if(this.props.deleteButton){
+            console.log(this.props.id);
+            del = <td><button onClick={() =>
+                axios.delete(this.url + "roasts/" + this.props.id)
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }>X</button></td>
         }
         return(
             <tr>
@@ -43,11 +44,22 @@ class Roasts extends Component{
                 <td>{d.toDateString()}</td>
                 <td><b>{this.props.review}</b></td>
                 <td>{this.props.toast}</td>
-                <td>{this.state.from}</td>
+                <td>{this.props.name}</td>
                 {del}
             </tr>
         )
     }
 }
+/*
+    axios.get(this.url + "students/" + this.props.from)
+            .then((res) => {
+                this.setState({from: res.data.first + " " + res.data.last + " " + res.data.class});
+            })
+            .catch(err => {
+                console.error(err);
+            });
+            return <div style={ {visibility : this.state.hidden }} id="deleteAlert">Successful Delete<button onClick={() => this.closeAlert()}>Close</button></div>;
+                    })
+ */
 
 export default Roasts;

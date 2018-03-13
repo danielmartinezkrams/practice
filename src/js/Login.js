@@ -37,7 +37,8 @@ class Login extends Component {
                         first: response.data.first,
                         last: response.data.last,
                         studentID: response.data.studentID,
-                        _id: response.data._id
+                        _id: response.data._id,
+                        from: response.data.first + " " + response.data.last + " " + response.data.class
                     };
                     this.setState({
                         isLoggedIn: true,
@@ -62,8 +63,9 @@ class Login extends Component {
                             items.push(response.data[i])
                         }
                     }
+                    console.log(items);
                     const display = (items.map((x) =>
-                        <Roasts key={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} delete={true}/>
+                        <Roasts key={x._id} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} deleteButton={true} name={x.name}/>
                     ));
                     this.setState({display: display});
                 })
