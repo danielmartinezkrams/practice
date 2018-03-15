@@ -58,15 +58,21 @@ class Login extends Component {
             axios.get(this.url + "roasts/")
                 .then((response) => {
                     let items = [];
-                    for (let i = 0; i < response.data.length; i++) {
-                        if (response.data[i].from === this.props.info.studentID) {
-                            items.push(response.data[i])
-                        }
+                    let display = null;
+                    if(response.data.length < 1){
+                        this.setState({display: <tr><td>No reviews yet</td></tr>})
                     }
-                    console.log(items);
-                    const display = (items.map((x) =>
-                        <Roasts key={x._id} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} deleteButton={true} name={x.name}/>
-                    ));
+                    else{
+                        for (let i = 0; i < response.data.length; i++) {
+                            if (response.data[i].from === this.props.info.studentID) {
+                                items.push(response.data[i])
+                            }
+                        }
+                        display = (items.map((x) =>
+                            <Roasts key={x._id} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} deleteButton={true} name={x.name}/>
+                        ));
+                    }
+
                     this.setState({display: display});
                 })
                 .catch(function (error) {
