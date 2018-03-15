@@ -110,7 +110,7 @@ class TeacherPage extends Component{
                 {this.state.name}
                 <br />
                 {form}
-                <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
+                <Scrollbars className="scrollBar" style={{ width: "90%"}}>
                     <table className="table">
                         <tbody>
                         <tr>

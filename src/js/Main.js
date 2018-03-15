@@ -22,6 +22,7 @@ class Main extends Component {
         const isLoggedIn = this.state.isLoggedIn;
         const info = this.state.info;
         return(
+
             <Switch>
                 <div className="content">
                     <Route exact path="/login" render={({match}) => <Login match={match} function={this.handler} info={info} isLoggedIn={isLoggedIn}/>} />

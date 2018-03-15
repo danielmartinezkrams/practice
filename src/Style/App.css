@@ -90,11 +90,17 @@ ul.footer li {
   margin: 0;
 }
 ul.footer {
-    background-color: #111;
-    padding: 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  background-color: #111;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 20px;
+  color: white;
+  border-top: 1px solid #E7E7E7;
+  text-align: center;
+  left: 0;
+  height: 7%;
 }
 ul.footer li a {
   color: #FFF;
@@ -189,19 +195,6 @@ a{
   margin-bottom: 15px;
   background-color: #333333;
   display: block;
-  height: 85%;
-  width: 100%;
-}
-
-.footer{
-  background-color: purple;
-  font-size: 20px;
-  color: white;
-  border-top: 1px solid #E7E7E7;
-  text-align: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 15%;
+  height: 100%;
   width: 100%;
 }
