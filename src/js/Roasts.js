@@ -11,13 +11,16 @@ class Roasts extends Component{
         }
     }
     componentDidMount() {
-        axios.get(this.url + "teachers/" + this.props.teacher)
-            .then((res) => {
-                this.setState({teacher: res.data.first + " " + res.data.last});
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        if(this.props.teacher !== undefined){
+            axios.get(this.url + "teachers/" + this.props.teacher)
+                .then((res) => {
+                    this.setState({teacher: res.data.first + " " + res.data.last});
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+
     }
     closeAlert(){
         this.setState({ hidden: "hidden" });
