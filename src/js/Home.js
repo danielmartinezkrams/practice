@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import { Scrollbars } from 'react-custom-scrollbars';
+//import { Scrollbars } from 'react-custom-scrollbars';
 import Roasts from "./Roasts"
 
 class Home extends Component {
@@ -45,7 +45,6 @@ class Home extends Component {
                 <h1>Home</h1>
                 <p>Welcome {name}</p>
                 <h4>Latest roasts</h4>
-                <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
                     <table className="table">
                         <tbody>
                         <tr>
@@ -58,7 +57,6 @@ class Home extends Component {
                         {this.state.display}
                         </tbody>
                     </table>
-                </Scrollbars>
             </div>
         )
     }

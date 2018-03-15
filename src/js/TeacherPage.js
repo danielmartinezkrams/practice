@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review"
-import { Scrollbars } from 'react-custom-scrollbars';
+//import { Scrollbars } from 'react-custom-scrollbars';
 import Roasts from "./Roasts"
 
 class TeacherPage extends Component{
@@ -110,7 +110,6 @@ class TeacherPage extends Component{
                 {this.state.name}
                 <br />
                 {form}
-                <Scrollbars className="scrollBar" style={{ width: "100%"}}>
                     <table className="table">
                         <tbody>
                         <tr>
@@ -122,7 +121,6 @@ class TeacherPage extends Component{
                             {this.state.display}
                         </tbody>
                     </table>
-                </Scrollbars>
             </div>
         )
     }
