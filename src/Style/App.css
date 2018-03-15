@@ -100,7 +100,7 @@ ul.footer {
   border-top: 1px solid #E7E7E7;
   text-align: center;
   left: 0;
-  height: 7%;
+  height: 10%;
 }
 ul.footer li a {
   color: #FFF;
@@ -195,6 +195,6 @@ a{
   margin-bottom: 15px;
   background-color: #333333;
   display: block;
-  height: 100%;
+  height: 90%;
   width: 100%;
 }
