@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
-import icon from "../img/icon-profile.png"
+import icon from "../img/icon-profile.png";
+import {Tabs, Tab} from "../../node_modules/material-ui/Tabs";
 
 class Footer extends Component{
     render() {
         return (
             <footer>
                 <nav>
-                    <ul className="footer">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/teacher">Teachers</Link></li>
-                        <li><Link to ="/login"><img src={icon} className="profile" alt="profilePic"/></Link></li>
-                    </ul>
+                    <Tabs className="footer">
+                        <Tab label="Home" containerElement={<Link to="/" />} />
+                        <Tab label="Teacher" containerElement={<Link to="/teacher" />} />
+                        <Tab containerElement={<Link to="/login" />} icon={<img src={icon} className="profile" alt="profilePic"/>}/>
+                    </Tabs>
                 </nav>
             </footer>
         )
     }
 }
+
+//<img src={icon} className="profile" alt="profilePic"/>
 
 export default Footer

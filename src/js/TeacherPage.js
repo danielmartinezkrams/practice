@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review"
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
 //import { Scrollbars } from 'react-custom-scrollbars';
+
+
 import Roasts from "./Roasts"
 
 class TeacherPage extends Component{
@@ -110,17 +113,19 @@ class TeacherPage extends Component{
                 {this.state.name}
                 <br />
                 {form}
-                    <table className="table">
-                        <tbody>
-                        <tr>
-                            <th>Date</th>
-                            <th>Review</th>
-                            <th>Roast</th>
-                            <th>Chef</th>
-                        </tr>
+                    <Table className="table">
+                        <TableHeader displaySelectAll={false}>
+                            <TableRow>
+                                <TableHeaderColumn>Date</TableHeaderColumn>
+                                <TableHeaderColumn>Review</TableHeaderColumn>
+                                <TableHeaderColumn>Roast</TableHeaderColumn>
+                                <TableHeaderColumn>Chef</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
                             {this.state.display}
-                        </tbody>
-                    </table>
+                        </TableBody>
+                    </Table>
             </div>
         )
     }

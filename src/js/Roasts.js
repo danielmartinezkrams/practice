@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import {TableRow, TableRowColumn,} from "../../node_modules/material-ui/Table";
 
 class Roasts extends Component{
     constructor(props) {
@@ -28,28 +29,28 @@ class Roasts extends Component{
     render(){
         let teacher = null;
         if(this.props.teacher !== undefined){
-            teacher = <td>{this.state.teacher}</td>;
+            teacher = <TableRowColumn>{this.state.teacher}</TableRowColumn>;
         }
         let d = new Date(this.props.date);
         let del = null;
         if(this.props.deleteButton){
             console.log(this.props.id);
-            del = <td><button onClick={() =>
+            del = <TableRowColumn><button onClick={() =>
                 axios.delete(this.url + "roasts/" + this.props.id)
                     .catch(function (error) {
                         console.log(error);
                     })
-            }>X</button></td>
+            }>X</button></TableRowColumn>
         }
         return(
-            <tr>
+            <TableRow>
                 {teacher}
-                <td>{d.toDateString()}</td>
-                <td><b>{this.props.review}</b></td>
-                <td>{this.props.toast}</td>
-                <td>{this.props.name}</td>
+                <TableRowColumn>{d.toDateString()}</TableRowColumn>
+                <TableRowColumn><b>{this.props.review}</b></TableRowColumn>
+                <TableRowColumn>{this.props.toast}</TableRowColumn>
+                <TableRowColumn>{this.props.name}</TableRowColumn>
                 {del}
-            </tr>
+            </TableRow>
         )
     }
 }
