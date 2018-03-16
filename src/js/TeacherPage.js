@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review"
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
+import Slider from "../../node_modules/material-ui/Slider";
 //import { Scrollbars } from 'react-custom-scrollbars';
 
 
@@ -49,13 +50,8 @@ class TeacherPage extends Component{
                 console.log(error);
             });
     }
-    handleChange(e) {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
-        this.setState({
-            [name]: value
-        });
+    handleChange(e, v) {
+        this.setState({review: v});
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -90,7 +86,7 @@ class TeacherPage extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Review:
-                        <input type="range" min={-5} max={5} name="review" defaultValue={0} onChange={this.handleChange} required/>
+                        <Slider name="review" min={-5} max={5} step={1} defaultValue={0} value={this.state.review} onChange={this.handleChange} required/>
                         {this.state.review}
                     </label>
                     <br/>
