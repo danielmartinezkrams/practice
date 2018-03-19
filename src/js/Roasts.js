@@ -34,7 +34,6 @@ class Roasts extends Component{
         let d = new Date(this.props.date);
         let del = null;
         if(this.props.deleteButton){
-            console.log(this.props.id);
             del = <TableRowColumn><button onClick={() =>
                 axios.delete(this.url + "roasts/" + this.props.id)
                     .catch(function (error) {

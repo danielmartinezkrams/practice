@@ -1,24 +1,42 @@
 import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
 import icon from "../img/icon-profile.png";
-import {Tabs, Tab} from "../../node_modules/material-ui/Tabs";
+import {BottomNavigation, BottomNavigationItem} from "../../node_modules/material-ui/BottomNavigation";
+import FontIcon from 'material-ui/FontIcon';
+import Paper from 'material-ui/Paper';
 
 class Footer extends Component{
     render() {
         return (
-            <footer>
-                <nav>
-                    <Tabs className="footer">
-                        <Tab label="Home" containerElement={<Link to="/" />} />
-                        <Tab label="Teacher" containerElement={<Link to="/teacher" />} />
-                        <Tab containerElement={<Link to="/login" />} icon={<img src={icon} className="profile" alt="profilePic"/>}/>
-                    </Tabs>
-                </nav>
-            </footer>
+            <Paper zDepth={1}>
+                <BottomNavigation>
+                    <BottomNavigationItem
+                        label="Home"
+                        containerElement={<Link to="/" />}
+                        icon={<FontIcon className="material-icons" />}
+                    />
+                    <BottomNavigationItem
+                        label="Teacher"
+                        containerElement={<Link to="/teacher" />}
+                        icon={<FontIcon className="material-icons" />}
+                    />
+                    <BottomNavigationItem
+                        containerElement={<Link to="/login" />}
+                        icon={<img src={icon} className="profile" alt="profilePic"/>}
+                    />
+                </BottomNavigation>
+            </Paper>
         )
     }
 }
 
 //<img src={icon} className="profile" alt="profilePic"/>
+/*
+ <Tabs className="footer">
+                        <Tab label="Home" containerElement={<Link to="/" />} />
+                        <Tab label="Teacher" containerElement={<Link to="/teacher" />} />
+                        <Tab containerElement={<Link to="/login" />} icon={<img src={icon} className="profile" alt="profilePic"/>}/>
+                    </Tabs>
+ */
 
 export default Footer

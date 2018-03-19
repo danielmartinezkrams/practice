@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 //import { Scrollbars } from 'react-custom-scrollbars';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
 import Roasts from "./Roasts"
 
 class Home extends Component {
@@ -45,18 +46,20 @@ class Home extends Component {
                 <h1>Home</h1>
                 <p>Welcome {name}</p>
                 <h4>Latest roasts</h4>
-                    <table className="table">
-                        <tbody>
-                        <tr>
-                            <th>Teacher</th>
-                            <th>Date</th>
-                            <th>Review</th>
-                            <th>Roast</th>
-                            <th>Chef</th>
-                        </tr>
-                        {this.state.display}
-                        </tbody>
-                    </table>
+                    <Table className="table">
+                       <TableHeader/>
+                            <TableRow>
+                                <TableHeaderColumn>Teacher</TableHeaderColumn>
+                                <TableHeaderColumn>Date</TableHeaderColumn>
+                                <TableHeaderColumn>Review</TableHeaderColumn>
+                                <TableHeaderColumn>Roast</TableHeaderColumn>
+                                <TableHeaderColumn>Chef</TableHeaderColumn>
+                            </TableRow>
+                        <TableHeader/>
+                        <TableBody>
+                            {this.state.display}
+                        </TableBody>
+                    </Table>
             </div>
         )
     }
