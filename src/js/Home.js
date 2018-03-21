@@ -46,7 +46,7 @@ class Home extends Component {
                 <p>Welcome {name}</p>
                 <h4>Latest roasts</h4>
                     <Table className="table" bodyStyle={{overflow:'visible'}} fixedHeader={true} selectable={false}>
-                       <TableHeader displaySelectAll={false}>
+                       <TableHeader displaySelectAll={true}>
                             <TableRow>
                                 <TableHeaderColumn>Teacher</TableHeaderColumn>
                                 <TableHeaderColumn>Date</TableHeaderColumn>
@@ -55,7 +55,7 @@ class Home extends Component {
                                 <TableHeaderColumn>Chef</TableHeaderColumn>
                             </TableRow>
                        </TableHeader>
-                        <TableBody displayRowCheckbox={false}>
+                        <TableBody>
                             {this.state.display}
                         </TableBody>
                     </Table>

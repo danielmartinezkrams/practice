@@ -32,8 +32,10 @@ class Roasts extends Component{
             teacher = <TableRowColumn style={boxStyle}>{this.state.teacher}</TableRowColumn>;
         }
         let d = new Date(this.props.date);
+        const otherProps = this.props;
         return(
-            <TableRow>
+            <TableRow {...otherProps}>
+                {otherProps.children[0]}
                 {teacher}
                 <TableRowColumn style={boxStyle}>{d.toDateString()}</TableRowColumn>
                 <TableRowColumn style={boxStyle}><b>{this.props.review}</b></TableRowColumn>
