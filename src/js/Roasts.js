@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {TableRow, TableRowColumn,} from "../../node_modules/material-ui/Table";
+import {TableRow, TableRowColumn} from "../../node_modules/material-ui/Table";
 
 class Roasts extends Component{
     constructor(props) {
@@ -32,15 +32,6 @@ class Roasts extends Component{
             teacher = <TableRowColumn style={boxStyle}>{this.state.teacher}</TableRowColumn>;
         }
         let d = new Date(this.props.date);
-        let del = null;
-        if(this.props.deleteButton){
-            del = <TableRowColumn style={boxStyle}><button onClick={() =>
-                axios.delete(this.url + "roasts/" + this.props.id)
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-            }>X</button></TableRowColumn>
-        }
         return(
             <TableRow>
                 {teacher}
@@ -48,7 +39,6 @@ class Roasts extends Component{
                 <TableRowColumn style={boxStyle}><b>{this.props.review}</b></TableRowColumn>
                 <TableRowColumn style={boxStyle}>{this.props.toast}</TableRowColumn>
                 <TableRowColumn style={boxStyle}>{this.props.name}</TableRowColumn>
-                {del}
             </TableRow>
         )
     }
@@ -62,6 +52,21 @@ const boxStyle = {
 
 
 /*
+let del = null;
+
+if(this.props.deleteButton){
+            console.log(this.props.deleteButton);
+            del = <TableRowColumn style={boxStyle}><button onClick={() =>
+                axios.delete(this.url + "roasts/" + this.props.id)
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }>X</button></TableRowColumn>
+        }
+
+           {del}
+
+
     axios.get(this.url + "students/" + this.props.from)
             .then((res) => {
                 this.setState({from: res.data.first + " " + res.data.last + " " + res.data.class});

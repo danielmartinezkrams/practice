@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from "../img/logo.png";
 import axios from "axios";
 import {Link } from 'react-router-dom';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
+import {TableRowColumn, TableRow, TableHeaderColumn, TableBody, Table, TableHeader} from "../../node_modules/material-ui/Table";
 import Roasts from "./Roasts"
 
 class Login extends Component {
@@ -60,7 +60,7 @@ class Login extends Component {
                     let items = [];
                     let display = null;
                     if(response.data.length < 1){
-                        this.setState({display: <tr><td>No reviews yet</td></tr>})
+                        this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>})
                     }
                     else{
                         for (let i = 0; i < response.data.length; i++) {
@@ -115,16 +115,16 @@ class Login extends Component {
                     <h4>My roasts</h4>
                         <Table className="table">
                             <TableHeader>
-                            <TableRow>
-                                <TableHeaderColumn>Teacher</TableHeaderColumn>
-                                <TableHeaderColumn>Date</TableHeaderColumn>
-                                <TableHeaderColumn>Review</TableHeaderColumn>
-                                <TableHeaderColumn>Roast</TableHeaderColumn>
-                                <TableHeaderColumn>Chef</TableHeaderColumn>
-                            </TableRow>
+                                <TableRow>
+                                    <TableHeaderColumn>Teacher</TableHeaderColumn>
+                                    <TableHeaderColumn>Date</TableHeaderColumn>
+                                    <TableHeaderColumn>Review</TableHeaderColumn>
+                                    <TableHeaderColumn>Roast</TableHeaderColumn>
+                                    <TableHeaderColumn>Chef</TableHeaderColumn>
+                                </TableRow>
                             </TableHeader>
-                            <TableBody>
-                            {this.state.display}
+                            <TableBody displayRowCheckbox={true} deselectOnClickaway={true} showRowHover={true} stripedRows={true}>
+                                {this.state.display}
                             </TableBody>
                         </Table>
                 </div>

@@ -5,8 +5,6 @@ import Review from "./Review"
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "../../node_modules/material-ui/Table";
 import Slider from "../../node_modules/material-ui/Slider";
 import TextField from '../../node_modules/material-ui/TextField';
-//import { Scrollbars } from 'react-custom-scrollbars';
-
 
 import Roasts from "./Roasts"
 
