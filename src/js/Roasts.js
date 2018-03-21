@@ -29,12 +29,12 @@ class Roasts extends Component{
     render(){
         let teacher = null;
         if(this.props.teacher !== undefined){
-            teacher = <TableRowColumn>{this.state.teacher}</TableRowColumn>;
+            teacher = <TableRowColumn style={boxStyle}>{this.state.teacher}</TableRowColumn>;
         }
         let d = new Date(this.props.date);
         let del = null;
         if(this.props.deleteButton){
-            del = <TableRowColumn><button onClick={() =>
+            del = <TableRowColumn style={boxStyle}><button onClick={() =>
                 axios.delete(this.url + "roasts/" + this.props.id)
                     .catch(function (error) {
                         console.log(error);
@@ -44,15 +44,23 @@ class Roasts extends Component{
         return(
             <TableRow>
                 {teacher}
-                <TableRowColumn>{d.toDateString()}</TableRowColumn>
-                <TableRowColumn><b>{this.props.review}</b></TableRowColumn>
-                <TableRowColumn>{this.props.toast}</TableRowColumn>
-                <TableRowColumn>{this.props.name}</TableRowColumn>
+                <TableRowColumn style={boxStyle}>{d.toDateString()}</TableRowColumn>
+                <TableRowColumn style={boxStyle}><b>{this.props.review}</b></TableRowColumn>
+                <TableRowColumn style={boxStyle}>{this.props.toast}</TableRowColumn>
+                <TableRowColumn style={boxStyle}>{this.props.name}</TableRowColumn>
                 {del}
             </TableRow>
         )
     }
 }
+
+const boxStyle = {
+    whiteSpace: "unset",
+    padding: "5px",
+    textAlign: "center"
+};
+
+
 /*
     axios.get(this.url + "students/" + this.props.from)
             .then((res) => {

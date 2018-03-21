@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
 import icon from "../img/icon-profile.png";
 import {BottomNavigation, BottomNavigationItem} from "../../node_modules/material-ui/BottomNavigation";
-import FontIcon from 'material-ui/FontIcon';
+import FontIcon from '../../node_modules/material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
+
 
 class Footer extends Component{
     render() {
@@ -21,8 +22,10 @@ class Footer extends Component{
                         icon={<FontIcon className="material-icons" />}
                     />
                     <BottomNavigationItem
+                        label="Profile"
+                        style={{marginRight: 24}}
                         containerElement={<Link to="/login" />}
-                        icon={<img src={icon} className="profile" alt="profilePic"/>}
+                        icon={<img src={icon} style={{width: "10%", display: "unset"}} className="profile" alt="profilePic"/>}
                     />
                 </BottomNavigation>
             </Paper>
@@ -30,7 +33,6 @@ class Footer extends Component{
     }
 }
 
-//<img src={icon} className="profile" alt="profilePic"/>
 /*
  <Tabs className="footer">
                         <Tab label="Home" containerElement={<Link to="/" />} />
