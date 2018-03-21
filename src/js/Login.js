@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from "../img/logo.png";
 import axios from "axios";
 import {Link } from 'react-router-dom';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
 import Roasts from "./Roasts"
 
 class Login extends Component {
@@ -113,20 +113,20 @@ class Login extends Component {
                     </h3>
                     <button onClick={this.logout}>Log Out</button>
                     <h4>My roasts</h4>
-                    <Scrollbars className="scrollBar" style={{ width: "90%", height: 500}}>
-                        <table className="table">
-                            <tbody>
-                            <tr>
-                                <th>Teacher</th>
-                                <th>Date</th>
-                                <th>Review</th>
-                                <th>Roast</th>
-                                <th>Chef</th>
-                            </tr>
+                        <Table className="table">
+                            <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn>Teacher</TableHeaderColumn>
+                                <TableHeaderColumn>Date</TableHeaderColumn>
+                                <TableHeaderColumn>Review</TableHeaderColumn>
+                                <TableHeaderColumn>Roast</TableHeaderColumn>
+                                <TableHeaderColumn>Chef</TableHeaderColumn>
+                            </TableRow>
+                            </TableHeader>
+                            <TableBody>
                             {this.state.display}
-                            </tbody>
-                        </table>
-                    </Scrollbars>
+                            </TableBody>
+                        </Table>
                 </div>
             )
         }

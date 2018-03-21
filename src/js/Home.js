@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from "axios";
-//import { Scrollbars } from 'react-custom-scrollbars';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
 import Roasts from "./Roasts"
 

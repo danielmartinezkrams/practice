@@ -64,7 +64,8 @@ class TeacherPage extends Component{
         this.setState({review: value});
     };
     handleSubmit(e) {
-        e.preventDefault();
+        if(this.props.isLoggedIn){
+            e.preventDefault();
             axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID, name: this.props.info.from})
                 .then(res => {
                     this.getData();
@@ -72,6 +73,7 @@ class TeacherPage extends Component{
                 .catch(err => {
                     console.error(err);
                 });
+        }
     }
     componentDidMount(){
         axios.get(this.url + "teachers/")
@@ -114,6 +116,7 @@ class TeacherPage extends Component{
                     <input type="submit" value="Submit" />
                 </form>
                 {link}
+                <br />
                     <Table className="table">
                         <TableHeader displaySelectAll={false}>
                             <TableRow>

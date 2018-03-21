@@ -25,7 +25,7 @@ class Footer extends Component{
                         label="Profile"
                         style={{marginRight: 24}}
                         containerElement={<Link to="/login" />}
-                        icon={<img src={icon} style={{width: "10%", display: "unset"}} className="profile" alt="profilePic"/>}
+                        icon={<img src={icon} style={{width: "15%", display: "unset"}} className="profile" alt="profilePic"/>}
                     />
                 </BottomNavigation>
             </Paper>
