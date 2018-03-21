@@ -55,7 +55,6 @@ class TeacherPage extends Component{
         const target = e.target;
         const name = target.name;
         const value = target.value;
-        console.log(value);
         this.setState({
             [name]: value
         });
@@ -71,7 +70,7 @@ class TeacherPage extends Component{
                     this.getData();
                 })
                 .catch(err => {
-                    console.error(err);
+                    console.log(err);
                 });
         }
     }
@@ -103,9 +102,9 @@ class TeacherPage extends Component{
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Review:
+                        Review: {this.state.review}
                         <Slider name="review" min={-5} max={5} step={1} defaultValue={0} value={this.state.review} disabled={!this.props.isLoggedIn} onChange={this.handleSlider} required/>
-                        {this.state.review}
+
                     </label>
                     <br/>
                     <label>
