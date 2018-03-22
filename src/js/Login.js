@@ -10,11 +10,15 @@ class Login extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handler = this.handler.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.logout = this.logout.bind(this);
+        this.getData = this.getData.bind(this);
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/";
         this.state = {
             isLoggedIn: this.props.isLoggedIn,
-            alert: false
+            alert: false,
+            selected: 1
         }
     }
     handleChange(e){
@@ -52,33 +56,35 @@ class Login extends Component {
                 console.log(error);
             });
     }
-
     componentDidMount(){
         if(this.state.isLoggedIn) {
-            axios.get(this.url + "roasts/")
-                .then((response) => {
-                    let items = [];
-                    let display = null;
-                    if(response.data.length < 1){
-                        this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>})
-                    }
-                    else{
-                        for (let i = 0; i < response.data.length; i++) {
-                            if (response.data[i].from === this.props.info.studentID) {
-                                items.push(response.data[i])
-                            }
-                        }
-                        display = (items.map((x) =>
-                            <Roasts key={x._id} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} deleteButton={true} name={x.name}/>
-                        ));
-                    }
-
-                    this.setState({display: display});
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+            this.getData()
         }
+    }
+
+    getData(){
+        axios.get(this.url + "roasts/")
+            .then((response) => {
+                let items = [];
+                let display = null;
+                if(response.data.length < 1){
+                    this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>})
+                }
+                else{
+                    for (let i = 0; i < response.data.length; i++) {
+                        if (response.data[i].from === this.props.info.studentID) {
+                            items.push(response.data[i])
+                        }
+                    }
+                    display = (items.map((x, index) =>
+                        <Roasts key={x._id} number={index} function={this.handler} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} selectable={true} name={x.name}/>
+                    ));
+                }
+                this.setState({display: display, items: items});
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
     closeAlert() {
         this.setState({ alert: false });
@@ -90,13 +96,29 @@ class Login extends Component {
         });
         this.props.function(false, "");
     }
-
-
+    handler(index){
+        console.log(index + this.state.selected);
+        if(this.state.selected == index){
+            console.log("hi");
+            return true
+        }
+        return false
+    };
     handleRowSelection = (selectedRows) => {
+        console.log(selectedRows);
         this.setState({
             selected: selectedRows,
         });
     };
+    handleDelete(){
+        axios.delete(this.url + "roasts/" + this.state.items[this.state.selected]._id)
+            .then((response) => {
+                this.getData()
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
     render() {
         let alert = null;
         if(this.state.alert){
@@ -130,10 +152,11 @@ class Login extends Component {
                                     <TableHeaderColumn>Chef</TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>
-                            <TableBody displayRowCheckbox={true} deselectOnClickaway={true} showRowHover={true} stripedRows={true}>
+                            <TableBody displayRowCheckbox={true}>
                                 {this.state.display}
                             </TableBody>
                         </Table>
+                    <button onClick={this.handleDelete}>Delete</button>
                 </div>
             )
         }
