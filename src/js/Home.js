@@ -46,7 +46,7 @@ class Home extends Component {
                 <p>Welcome {name}</p>
                 <h4>Latest roasts</h4>
                     <Table className="table" bodyStyle={{overflow:'visible'}} fixedHeader={true} selectable={false}>
-                       <TableHeader displaySelectAll={true}>
+                       <TableHeader displaySelectAll={false}>
                             <TableRow>
                                 <TableHeaderColumn>Teacher</TableHeaderColumn>
                                 <TableHeaderColumn>Date</TableHeaderColumn>

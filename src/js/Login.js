@@ -90,6 +90,13 @@ class Login extends Component {
         });
         this.props.function(false, "");
     }
+
+
+    handleRowSelection = (selectedRows) => {
+        this.setState({
+            selected: selectedRows,
+        });
+    };
     render() {
         let alert = null;
         if(this.state.alert){
@@ -113,7 +120,7 @@ class Login extends Component {
                     </h3>
                     <button onClick={this.logout}>Log Out</button>
                     <h4>My roasts</h4>
-                        <Table className="table">
+                        <Table className="table" multiSelectable={true} onRowSelection={this.handleRowSelection}>
                             <TableHeader>
                                 <TableRow>
                                     <TableHeaderColumn>Teacher</TableHeaderColumn>

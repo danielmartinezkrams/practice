@@ -5,7 +5,6 @@ import Review from "./Review"
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "../../node_modules/material-ui/Table";
 import Slider from "../../node_modules/material-ui/Slider";
 import TextField from '../../node_modules/material-ui/TextField';
-
 import Roasts from "./Roasts"
 
 class TeacherPage extends Component{
@@ -115,7 +114,7 @@ class TeacherPage extends Component{
                 {link}
                 <br />
                     <Table className="table">
-                        <TableHeader displaySelectAll={false}>
+                        <TableHeader displaySelectAll={false} >
                             <TableRow>
                                 <TableHeaderColumn>Date</TableHeaderColumn>
                                 <TableHeaderColumn>Review</TableHeaderColumn>
