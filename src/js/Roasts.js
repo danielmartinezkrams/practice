@@ -8,7 +8,8 @@ class Roasts extends Component{
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/";
         this.state = {
             from: "",
-            teacher: ""
+            teacher: "",
+            selected: [1]
         }
     }
     componentDidMount() {
@@ -34,13 +35,11 @@ class Roasts extends Component{
         let d = new Date(this.props.date);
         let space = null;
         const otherProps = this.props;
-        let handler = null;
         if(this.props.selectable){
             space = otherProps.children[0];
-            handler = this.props.function(this.props.number)
         }
         return(
-            <TableRow selected={handler} selectable={this.props.selectable} {...otherProps}>
+            <TableRow selectable={this.props.selectable} {...otherProps}>
                 {space}
                 {teacher}
                 <TableRowColumn style={boxStyle}>{d.toDateString()}</TableRowColumn>

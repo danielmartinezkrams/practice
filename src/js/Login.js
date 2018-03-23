@@ -10,7 +10,6 @@ class Login extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handler = this.handler.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.logout = this.logout.bind(this);
         this.getData = this.getData.bind(this);
@@ -18,7 +17,7 @@ class Login extends Component {
         this.state = {
             isLoggedIn: this.props.isLoggedIn,
             alert: false,
-            selected: 1
+            selected: []
         }
     }
     handleChange(e){
@@ -77,7 +76,7 @@ class Login extends Component {
                         }
                     }
                     display = (items.map((x, index) =>
-                        <Roasts key={x._id} number={index} function={this.handler} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} selectable={true} name={x.name}/>
+                        <Roasts key={x._id} number={index} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} selectable={true} name={x.name}/>
                     ));
                 }
                 this.setState({display: display, items: items});
@@ -96,28 +95,20 @@ class Login extends Component {
         });
         this.props.function(false, "");
     }
-    handler(index){
-        console.log(index + this.state.selected);
-        if(this.state.selected == index){
-            console.log("hi");
-            return true
-        }
-        return false
-    };
     handleRowSelection = (selectedRows) => {
-        console.log(selectedRows);
         this.setState({
             selected: selectedRows,
         });
     };
+
     handleDelete(){
         axios.delete(this.url + "roasts/" + this.state.items[this.state.selected]._id)
-            .then((response) => {
-                this.getData()
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+                .then((response) => {
+                    this.getData()
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
     }
     render() {
         let alert = null;
@@ -142,8 +133,8 @@ class Login extends Component {
                     </h3>
                     <button onClick={this.logout}>Log Out</button>
                     <h4>My roasts</h4>
-                        <Table className="table" multiSelectable={true} onRowSelection={this.handleRowSelection}>
-                            <TableHeader>
+                        <Table className="table" onRowSelection={this.handleRowSelection}>
+                            <TableHeader displaySelectAll={false}>
                                 <TableRow>
                                     <TableHeaderColumn>Teacher</TableHeaderColumn>
                                     <TableHeaderColumn>Date</TableHeaderColumn>
