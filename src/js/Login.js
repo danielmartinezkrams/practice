@@ -65,7 +65,6 @@ class Login extends Component {
     getData(){
         axios.get(this.url + "roasts/")
             .then((response) => {
-                console.log(response);
                 let items = [];
                 let display = null;
                 for (let i = 0; i < response.data.length; i++) {
@@ -74,7 +73,6 @@ class Login extends Component {
                     }
                 }
                 if(items.length < 1){
-                    console.log("hi");
                     this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>, items: items, noData: true})
                 }
                 else{
@@ -130,7 +128,6 @@ class Login extends Component {
             }
         }
         else if(this.state.isLoggedIn){
-            console.log(this.state.display);
             return (
                 <div className="Login">
                     <h3>
