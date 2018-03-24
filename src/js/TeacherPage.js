@@ -85,7 +85,6 @@ class TeacherPage extends Component{
             .catch(function (error) {
                 console.log(error);
             });
-
     }
     render() {
         let link = null;

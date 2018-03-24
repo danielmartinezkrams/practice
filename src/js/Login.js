@@ -17,7 +17,8 @@ class Login extends Component {
         this.state = {
             isLoggedIn: this.props.isLoggedIn,
             alert: false,
-            selected: []
+            selected: [],
+            noData: false
         }
     }
     handleChange(e){
@@ -64,22 +65,24 @@ class Login extends Component {
     getData(){
         axios.get(this.url + "roasts/")
             .then((response) => {
+                console.log(response);
                 let items = [];
                 let display = null;
-                if(response.data.length < 1){
-                    this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>})
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].from === this.props.info.studentID) {
+                        items.push(response.data[i])
+                    }
+                }
+                if(items.length < 1){
+                    console.log("hi");
+                    this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn></TableRow>, items: items, noData: true})
                 }
                 else{
-                    for (let i = 0; i < response.data.length; i++) {
-                        if (response.data[i].from === this.props.info.studentID) {
-                            items.push(response.data[i])
-                        }
-                    }
                     display = (items.map((x, index) =>
                         <Roasts key={x._id} number={index} id={x._id} date={x.createDate} teacher={x.refer} review={x.review} toast={x.toast} from={x.from} selectable={true} name={x.name}/>
                     ));
+                    this.setState({display: display, items: items});
                 }
-                this.setState({display: display, items: items});
             })
             .catch(function (error) {
                 console.log(error);
@@ -101,13 +104,16 @@ class Login extends Component {
         });
     };
     handleDelete(){
-        axios.delete(this.url + "roasts/" + this.state.items[this.state.selected]._id)
+        if(!this.state.noData){
+            axios.delete(this.url + "roasts/" + this.state.items[this.state.selected]._id)
                 .then((response) => {
                     this.getData()
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
+        }
+
     }
     render() {
         let alert = null;
@@ -124,6 +130,7 @@ class Login extends Component {
             }
         }
         else if(this.state.isLoggedIn){
+            console.log(this.state.display);
             return (
                 <div className="Login">
                     <h3>
