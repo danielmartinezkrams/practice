@@ -9,7 +9,7 @@ class Roasts extends Component{
         this.state = {
             from: "",
             teacher: "",
-            selected: [1]
+            selected: false
         }
     }
     componentDidMount() {
@@ -27,6 +27,13 @@ class Roasts extends Component{
     closeAlert(){
         this.setState({ hidden: "hidden" });
     }
+    handleSelect(){
+        console.log(this.state.selected);
+        this.setState({
+            selected: !this.state.selected
+        });
+        return this.state.selected
+    }
     render(){
         let teacher = null;
         if(this.props.teacher !== undefined){
@@ -39,7 +46,7 @@ class Roasts extends Component{
             space = otherProps.children[0];
         }
         return(
-            <TableRow selectable={this.props.selectable} {...otherProps}>
+            <TableRow selected={this.handleSelect} selectable={this.props.selectable} {...otherProps}>
                 {space}
                 {teacher}
                 <TableRowColumn style={boxStyle}>{d.toDateString()}</TableRowColumn>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import Review from "./Review"
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "../../node_modules/material-ui/Table";
+import FlatButton from "../../node_modules/material-ui/FlatButton";
 import Slider from "../../node_modules/material-ui/Slider";
 import TextField from '../../node_modules/material-ui/TextField';
 import Roasts from "./Roasts"
@@ -38,7 +39,7 @@ class TeacherPage extends Component{
                         }
                     }
                     const items = (response.data.map((x) =>
-                        <Roasts key={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from} name={x.name}/>
+                        <Roasts key={x._id} id={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from} name={x.name}/>
                     ));
                     const rev = Math.round(ave/response.data.length);
                     this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
@@ -97,7 +98,7 @@ class TeacherPage extends Component{
                 {this.state.total}
                 {this.state.name}
                 <br />
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <label>
                         Review: {this.state.review}
                         <Slider name="review" min={-5} max={5} step={1} defaultValue={0} value={this.state.review} disabled={!this.props.isLoggedIn} onChange={this.handleSlider} required/>
@@ -105,11 +106,10 @@ class TeacherPage extends Component{
                     </label>
                     <br/>
                     <label>
-                        Roast:
-                        <TextField type="text" name="roast" disabled={!this.props.isLoggedIn} onChange={this.handleChange} required/>
+                        Roast: <TextField type="text" name="roast" disabled={!this.props.isLoggedIn} onChange={this.handleChange} required/>
                     </label>
                     <br/>
-                    <input type="submit" value="Submit" />
+                    <FlatButton onClick={this.handleSubmit} backgroundColor={"dodgerblue"} label="Submit" disabled={!this.props.isLoggedIn} />
                 </form>
                 {link}
                 <br />

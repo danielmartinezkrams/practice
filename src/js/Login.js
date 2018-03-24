@@ -100,7 +100,6 @@ class Login extends Component {
             selected: selectedRows,
         });
     };
-
     handleDelete(){
         axios.delete(this.url + "roasts/" + this.state.items[this.state.selected]._id)
                 .then((response) => {
