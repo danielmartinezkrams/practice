@@ -162,7 +162,7 @@ class Login extends Component {
                 {alert}
                 <form className="confirm" onSubmit={this.handleSubmit}>
                     <label className="verification">Student Verification</label>
-                    <input className="idCheck" name="id" type="text" onChange={this.handleChange}/>
+                    <input className="idCheck" name="id" type="number" onChange={this.handleChange}/>
                     <input className="confirmButton" type="submit" value="Submit"/>
                     <p>Enter last 4 digits of student ID and day of birth (ex: 012301)</p>
                 </form>

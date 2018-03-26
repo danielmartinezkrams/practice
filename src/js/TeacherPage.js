@@ -65,6 +65,7 @@ class TeacherPage extends Component{
             axios.post(this.url + "roasts/", {refer: this.state.refer, review: this.state.review, toast: this.state.roast, from: this.props.info.studentID, name: this.props.info.from})
                 .then(res => {
                     this.getData();
+                    this.setState({roast: "", review: 0})
                 })
                 .catch(err => {
                     console.log(err);
@@ -106,7 +107,7 @@ class TeacherPage extends Component{
                     <Slider name="review" min={-5} style={{width: "50%", textAlign: "center", display: "inline-block"}} max={5} step={1} defaultValue={0} value={this.state.review} disabled={!this.props.isLoggedIn} onChange={this.handleSlider} required/>
                     <br/>
                     <label>
-                        Roast: <TextField type="text" name="roast" disabled={!this.props.isLoggedIn} onChange={this.handleChange} required/>
+                        Roast: <TextField type="text" value={this.state.roast} name="roast" disabled={!this.props.isLoggedIn} onChange={this.handleChange} required/>
                     </label>
                     <br/>
                     <FlatButton onClick={this.handleSubmit} backgroundColor={"dodgerblue"} label="Submit" disabled={!this.props.isLoggedIn} />
