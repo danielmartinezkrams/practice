@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import Review from "./Review"
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "../../node_modules/material-ui/Table";
 import FlatButton from "../../node_modules/material-ui/FlatButton";
 import Slider from "../../node_modules/material-ui/Slider";
@@ -29,7 +28,7 @@ class TeacherPage extends Component{
         axios.get(this.url + "roasts/" + this.props.match.params.id)
             .then((response) => {
                 if(response.data.length < 1){
-                    this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn>TableRowColumn></TableRow>, total: (<Review number={0}/>), refer: this.props.match.params.id})
+                    this.setState({display: <TableRow><TableRowColumn>No reviews yet</TableRowColumn>TableRowColumn></TableRow>, total: (<div className="displayCircle">{0}</div>), refer: this.props.match.params.id})
                 }
                 else{
                     for(let i = 0; i < response.data.length; i++){
@@ -42,7 +41,7 @@ class TeacherPage extends Component{
                         <Roasts key={x._id} id={x._id} date={x.createDate} review={x.review} toast={x.toast} from={x.from} name={x.name}/>
                     ));
                     const rev = Math.round(ave/response.data.length);
-                    this.setState({display: items, total: (<Review number={rev}/>), refer: this.props.match.params.id})
+                    this.setState({display: items, total: (<div className="displayCircle">{rev}</div>), refer: this.props.match.params.id})
                 }
             })
             .catch(function (error) {
@@ -97,12 +96,14 @@ class TeacherPage extends Component{
                 {this.state.total}
                 {this.state.name}
                 <br />
-                <form>
-                    <label>
-                        Review: {this.state.review}
-                        <Slider name="review" min={-5} max={5} step={1} defaultValue={0} value={this.state.review} disabled={!this.props.isLoggedIn} onChange={this.handleSlider} required/>
-
-                    </label>
+                <br />
+                <form className="review">
+                    {link}
+                    <br />
+                    <h4>
+                       {this.state.review}
+                    </h4>
+                    <Slider name="review" min={-5} style={{width: "50%", textAlign: "center", display: "inline-block"}} max={5} step={1} defaultValue={0} value={this.state.review} disabled={!this.props.isLoggedIn} onChange={this.handleSlider} required/>
                     <br/>
                     <label>
                         Roast: <TextField type="text" name="roast" disabled={!this.props.isLoggedIn} onChange={this.handleChange} required/>
@@ -110,7 +111,6 @@ class TeacherPage extends Component{
                     <br/>
                     <FlatButton onClick={this.handleSubmit} backgroundColor={"dodgerblue"} label="Submit" disabled={!this.props.isLoggedIn} />
                 </form>
-                {link}
                 <br />
                     <Table className="table">
                         <TableHeader displaySelectAll={false} >

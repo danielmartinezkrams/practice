@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from "axios";
 import logo from "../img/logo.png";
 import ListItem from "./ListItem";
-//import { Scrollbars } from 'react-custom-scrollbars';
 
 class TeacherList extends Component {
     constructor(props) {

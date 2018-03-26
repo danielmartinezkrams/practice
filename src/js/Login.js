@@ -137,7 +137,7 @@ class Login extends Component {
                     <button onClick={this.logout}>Log Out</button>
                     <h4>My roasts</h4>
                         <Table className="table" onRowSelection={this.handleRowSelection}>
-                            <TableHeader displaySelectAll={false}>
+                            <TableHeader displaySelectAll={false} adjustForCheckbox={true}>
                                 <TableRow>
                                     <TableHeaderColumn>Teacher</TableHeaderColumn>
                                     <TableHeaderColumn>Date</TableHeaderColumn>
