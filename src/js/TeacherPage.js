@@ -16,7 +16,6 @@ class TeacherPage extends Component{
         this.getData = this.getData.bind(this);
         this.state = {
             display: [],
-            ave: 0,
             total: 0,
             roast: "",
             name: "",

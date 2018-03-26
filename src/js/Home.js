@@ -8,8 +8,7 @@ class Home extends Component {
         super(props);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.state = {
-            display: [],
-            name: "",
+            display: []
         };
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/roasts/";
     }

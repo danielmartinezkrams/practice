@@ -6,10 +6,13 @@ class Roasts extends Component{
     constructor(props) {
         super(props);
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/";
+        this.boxStyle = {
+            whiteSpace: "unset",
+            padding: "5px",
+            textAlign: "center"
+        };
         this.state = {
-            from: "",
             teacher: "",
-            selected: false
         }
     }
     componentDidMount() {
@@ -24,20 +27,10 @@ class Roasts extends Component{
         }
 
     }
-    closeAlert(){
-        this.setState({ hidden: "hidden" });
-    }
-    handleSelect(){
-        console.log(this.state.selected);
-        this.setState({
-            selected: !this.state.selected
-        });
-        return this.state.selected
-    }
     render(){
         let teacher = null;
         if(this.props.teacher !== undefined){
-            teacher = <TableRowColumn style={boxStyle}>{this.state.teacher}</TableRowColumn>;
+            teacher = <TableRowColumn style={this.boxStyle}>{this.state.teacher}</TableRowColumn>;
         }
         let d = new Date(this.props.date);
         let space = null;
@@ -46,52 +39,16 @@ class Roasts extends Component{
             space = otherProps.children[0];
         }
         return(
-            <TableRow selected={this.handleSelect} selectable={this.props.selectable} {...otherProps}>
+            <TableRow selectable={this.props.selectable} {...otherProps}>
                 {space}
                 {teacher}
-                <TableRowColumn style={boxStyle}>{d.toDateString()}</TableRowColumn>
-                <TableRowColumn style={boxStyle}><b>{this.props.review}</b></TableRowColumn>
-                <TableRowColumn style={boxStyle}>{this.props.toast}</TableRowColumn>
-                <TableRowColumn style={boxStyle}>{this.props.name}</TableRowColumn>
+                <TableRowColumn style={this.boxStyle}>{d.toDateString()}</TableRowColumn>
+                <TableRowColumn style={this.boxStyle}><b>{this.props.review}</b></TableRowColumn>
+                <TableRowColumn style={this.boxStyle}>{this.props.toast}</TableRowColumn>
+                <TableRowColumn style={this.boxStyle}>{this.props.name}</TableRowColumn>
             </TableRow>
         )
     }
 }
-
-
-
-const boxStyle = {
-    whiteSpace: "unset",
-    padding: "5px",
-    textAlign: "center"
-};
-
-
-/*
-let del = null;
-
-if(this.props.deleteButton){
-            console.log(this.props.deleteButton);
-            del = <TableRowColumn style={boxStyle}><button onClick={() =>
-                axios.delete(this.url + "roasts/" + this.props.id)
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-            }>X</button></TableRowColumn>
-        }
-
-           {del}
-
-
-    axios.get(this.url + "students/" + this.props.from)
-            .then((res) => {
-                this.setState({from: res.data.first + " " + res.data.last + " " + res.data.class});
-            })
-            .catch(err => {
-                console.error(err);
-            });
-            return <div style={ {visibility : this.state.hidden }} id="deleteAlert">Successful Delete<button onClick={() => this.closeAlert()}>Close</button></div>;
-                    })
- */
 
 export default Roasts;

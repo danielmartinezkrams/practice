@@ -6,12 +6,10 @@ import ListItem from "./ListItem";
 class TeacherList extends Component {
     constructor(props) {
         super(props);
-        this.data = "";
         this.componentDidMount = this.componentDidMount.bind(this);
         this.filterList = this.filterList.bind(this);
         this.url = "https://roast-my-teacher-backend.herokuapp.com/api/teachers/";
         this.state = {
-            data: "",
             display: []
         };
     }
@@ -36,7 +34,6 @@ class TeacherList extends Component {
                 console.log(error);
             });
     }
-
     filterList(event){
         const permList = this.state.items;
         let updatedList = permList.filter(function(item){
@@ -44,7 +41,6 @@ class TeacherList extends Component {
         });
         this.setState({display: updatedList});
     }
-
     render() {
         return (
             <div className="teacher">
@@ -52,31 +48,19 @@ class TeacherList extends Component {
                     <h1 className="App-title">Teachers</h1>
                     <img id="logo" className="App-logo" alt="small blue logo" src={logo}/>
                 </div>
-                <div>
-
-                        <div className="filter-list">
-                            <form>
-                                <fieldset className="form-group">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filterList}/>
-                                </fieldset>
-                            </form>
-                            <ul className="list-group">
-                                {this.state.display}
-                            </ul>
-                        </div>
+                <div className="filter-list">
+                    <form>
+                        <fieldset className="form-group">
+                            <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filterList}/>
+                        </fieldset>
+                    </form>
+                    <ul className="list-group">
+                        {this.state.display}
+                    </ul>
                 </div>
             </div>
         )
     }
 }
-
-/*
-for(let o = 0; o < list.length; o++) {
-                        if (response.data[i].name === list[o].name){
-                            list[o].subject = [list[o].subject, response.data[i].subject];
-                        }
-
-                    }
- */
 
 export default TeacherList
