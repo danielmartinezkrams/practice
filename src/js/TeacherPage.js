@@ -47,12 +47,9 @@ class TeacherPage extends Component{
                 console.log(error);
             });
     }
-    handleChange(e) {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
+    handleChange(e){
         this.setState({
-            [name]: value
+            [e.target.name]: e.target.value,
         });
     }
     handleSlider = (event, value) => {
