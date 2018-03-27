@@ -43,7 +43,7 @@ class TeacherPage extends Component{
                     this.setState({display: items, total: (<div className="displayCircle">{rev}</div>), refer: this.props.match.params.id})
                 }
             })
-            .catch(function (error) {
+            .chatch(function (error) {
                 console.log(error);
             });
     }
@@ -85,7 +85,7 @@ class TeacherPage extends Component{
     render() {
         let link = null;
         if (!this.props.isLoggedIn) {
-            link = <Link to={`/login/${this.state.refer}`}>Log in to Roast</Link>;
+            link = <Link to={`/login/${this.state.refer}`}>Login to Roast</Link>;
         }
         return (
             <div>

@@ -33,12 +33,4 @@ class Footer extends Component{
     }
 }
 
-/*
- <Tabs className="footer">
-                        <Tab label="Home" containerElement={<Link to="/" />} />
-                        <Tab label="Teacher" containerElement={<Link to="/teacher" />} />
-                        <Tab containerElement={<Link to="/login" />} icon={<img src={icon} className="profile" alt="profilePic"/>}/>
-                    </Tabs>
- */
-
 export default Footer

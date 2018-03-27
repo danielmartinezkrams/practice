@@ -182,15 +182,4 @@ function isEmpty(obj) {
     return true;
 }
 
-
-/*
- if(this.props.match.params.refer.length > 1){
- this.props.history.push('/teacher' + this.props.match.param.refer);
- }
- else{
- console.log("hi");
- this.props.history.push('/');
- }
- */
-
 export default Login

@@ -38,7 +38,7 @@ class Home extends Component {
         return (
             <div className="home">
                 <h1>Home</h1>
-                <p>Welcome {name}</p>
+                <h2>Welcome {name}</h2>
                 <h4>Latest roasts</h4>
                     <Table className="table" bodyStyle={{overflow:'visible'}} fixedHeader={true} selectable={false}>
                        <TableHeader displaySelectAll={false}>
