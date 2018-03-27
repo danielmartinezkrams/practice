@@ -5,8 +5,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 10px;
+  height: 50px;
 }
 
 .profile{
@@ -30,17 +29,12 @@
   width: 70%;
   margin:  auto;
   line-height: 80%;
-  z-index: 2;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 .titleLogo{
   padding-top:100px;
 }
@@ -57,7 +51,7 @@
   font-weight: 700;
   font-size: 125%;
   text-align: center;
-  padding: 4%;
+  padding: 5px;
 }
 .confirmButton{
   width: 86%;
@@ -134,10 +128,7 @@ ul.footer li a {
     padding: 5px;
 }
 
-#logo {
-  width: 12%;
-  height: auto;
-}
+
 .header{
   margin: auto;
   background: dodgerblue;

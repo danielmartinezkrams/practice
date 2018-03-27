@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow} from "../../node_modules/material-ui/Table";
-import Roasts from "./Roasts"
+import Roasts from "./Roasts";
+import logo from "../img/logo.png";
 
 class Home extends Component {
     constructor(props) {
@@ -31,17 +32,25 @@ class Home extends Component {
     }
     render() {
         const isLoggedIn = this.props.isLoggedIn;
-        let name = null;
+        let welcome = null;
         if(isLoggedIn){
-            name = this.props.info.first + " " + this.props.info.last;
+            welcome = <h4>Welcome {this.props.info.first} {this.props.info.last}</h4>
         }
         return (
             <div className="home">
-                <h1>Home</h1>
-                <h2>Welcome {name}</h2>
-                <h4>Latest roasts</h4>
+                <div className="header">
+                    <h1 className="App-title">Home</h1>
+                    {welcome}
+                    <img id="logo" className="App-logo" alt="small blue logo" src={logo}/>
+                </div>
+
                     <Table className="table" bodyStyle={{overflow:'visible'}} fixedHeader={true} selectable={false}>
                        <TableHeader displaySelectAll={false}>
+                           <TableRow>
+                               <TableHeaderColumn colSpan="5" style={{textAlign: 'center'}}>
+                                   Latest Roasts
+                               </TableHeaderColumn>
+                           </TableRow>
                             <TableRow>
                                 <TableHeaderColumn>Teacher</TableHeaderColumn>
                                 <TableHeaderColumn>Date</TableHeaderColumn>
