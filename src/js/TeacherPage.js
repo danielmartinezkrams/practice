@@ -87,7 +87,6 @@ class TeacherPage extends Component{
         if (!this.props.isLoggedIn) {
             link = <Link to={`/login/${this.state.refer}`}>Login to Roast</Link>;
         }
-        console.log(this.state.review + this.state.roast);
         return (
             <div>
                 <Link to='/teacher'>Back</Link>
