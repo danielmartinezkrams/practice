@@ -111,7 +111,6 @@ class Login extends Component {
                     console.log(error);
                 })
         }
-
     }
     render() {
         let alert = null;
