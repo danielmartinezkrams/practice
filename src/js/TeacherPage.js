@@ -43,7 +43,7 @@ class TeacherPage extends Component{
                     this.setState({display: items, total: (<div className="displayCircle">{rev}</div>), refer: this.props.match.params.id})
                 }
             })
-            .chatch(function (error) {
+            .catch(function (error) {
                 console.log(error);
             });
     }
@@ -63,7 +63,7 @@ class TeacherPage extends Component{
                     this.getData();
                     this.setState({roast: "", review: 0})
                 })
-                .catch(err => {
+                .catch((err)=> {
                     console.log(err);
                 });
         }
@@ -78,7 +78,7 @@ class TeacherPage extends Component{
                 }
                 this.getData();
             })
-            .catch(function (error) {
+            .catch((error)=> {
                 console.log(error);
             });
     }
@@ -87,6 +87,7 @@ class TeacherPage extends Component{
         if (!this.props.isLoggedIn) {
             link = <Link to={`/login/${this.state.refer}`}>Login to Roast</Link>;
         }
+        console.log(this.state.review + this.state.roast);
         return (
             <div>
                 <Link to='/teacher'>Back</Link>
